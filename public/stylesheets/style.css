@@ -1,8 +1,24 @@
 body {
-  padding: 50px;
+  margin: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  display: flex;
+  height: 100vh;
 }
 
 a {
   color: #00B7FF;
+}
+
+.navBar {
+  padding: 20px;
+  background-color: red;
+}
+
+.navBar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.mainContainer {
+  padding: 20px;
 }

@@ -28,5 +28,7 @@ ArtistSchema.virtual('lifespan').get(function () {
 });
 
 ArtistSchema.virtual('url').get(function () {
-    return `/artist/${this._id}`;
+    return `/category/artist/${this._id}`;
 });
+
+module.exports = mongoose.model('Artist', ArtistSchema);

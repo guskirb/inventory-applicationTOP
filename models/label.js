@@ -9,7 +9,7 @@ const LabelSchema = new Schema({
 });
 
 LabelSchema.virtual('url').get(function () {
-    return `/category/label/${this._id}`;
+    return `/label/${this._id}`;
 });
 
 module.exports = mongoose.model('Label', LabelSchema);

@@ -19,7 +19,7 @@ FormatSchema.virtual('price_formatted').get(function () {
 })
 
 FormatSchema.virtual('url').get(function () {
-    return `/category/format/${this._id}`;
+    return `/release/${this._id}`;
 });
 
 module.exports = mongoose.model('Format', FormatSchema);

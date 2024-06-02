@@ -17,7 +17,7 @@ AlbumSchema.virtual('release_date_formatted').get(function () {
 });
 
 AlbumSchema.virtual('url').get(function () {
-    return `/category/album/${this._id}`;
+    return `/album/${this._id}`;
 });
 
 module.exports = mongoose.model('Album', AlbumSchema);

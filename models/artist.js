@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 const ArtistSchema = new Schema({
     first_name: { type: String, required: true, maxLength: 100 },
     last_name: { type: String, maxLength: 100 },
-    birth_date: { type: Date },
+    birth_date: { type: Date, required: true },
     death_date: { type: Date },
     country: { type: String, maxLength: 100 },
 });
@@ -28,5 +28,7 @@ ArtistSchema.virtual('lifespan').get(function () {
 });
 
 ArtistSchema.virtual('url').get(function () {
-    return `/artist/${this._id}`;
+    return `/category/artist/${this._id}`;
 });
+
+module.exports = mongoose.model('Artist', ArtistSchema);

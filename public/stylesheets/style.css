@@ -5,18 +5,26 @@ body {
   height: 100vh;
 }
 
-a {
-  color: #00B7FF;
+h1, h2{
+  margin:0;
 }
 
 .navBar {
   padding: 20px;
   background-color: red;
+  display: flex;
+  flex-flow: column;
+  gap: 20px;
 }
 
 .navBar ul {
   list-style: none;
+  margin: 0;
   padding: 0;
+  padding-left: 10px;
+  display: flex;
+  flex-flow: column;
+  gap: 10px;
 }
 
 .mainContainer {

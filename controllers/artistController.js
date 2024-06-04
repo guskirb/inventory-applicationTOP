@@ -11,7 +11,7 @@ exports.artist_detail = asyncHandler(async (req, res, next) => {
 });
 
 exports.artist_create_get = asyncHandler(async (req, res, next) => {
-    res.render('artist_form', { title: 'Create Artist' , artist: undefined});
+    res.render('artist_form', { title: 'Add Artist' , artist: undefined});
 });
 
 exports.artist_create_post = [
@@ -54,7 +54,7 @@ exports.artist_create_post = [
         if (!errors.isEmpty()) {
             console.log(artist, errors)
             res.render('artist_form', {
-                title: 'Create Artist',
+                title: 'Add Artist',
                 artist: artist,
                 errors: errors.array(),
             });

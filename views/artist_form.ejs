@@ -17,22 +17,22 @@
             <form method="post">
                 <div class="formCoupled">
                     <label for="first_name">First Name:
-                        <input type="text" name="first_name" id="first_name" value=<%= undefined===artist ? '' : artist.first_name %>>
+                        <input type="text" name="first_name" id="first_name" value='<%= undefined===artist ? '' : artist.first_name %>'>
                     </label>
                     <label for="last_name">Last Name:
-                        <input type="text" name="last_name" id="last_name" value=<%= undefined===artist ? '' : artist.last_name %>>
+                        <input type="text" name="last_name" id="last_name" value='<%= undefined===artist ? '' : artist.last_name %>'>
                     </label>
                 </div>
                 <div class="formCoupled">
                     <label for="birth_date">Date of Birth:
-                        <input type="date" name="birth_date" id="birth_date" value=<%= undefined===artist ? '' : artist.birth_date %>>
+                        <input type="date" name="birth_date" id="birth_date" value='<%= undefined===artist ? '' : artist.birth_date %>'>
                     </label>
                     <label for="death_date">Date of Death:
-                        <input type="date" name="death_date" id="death_date" value=<%= undefined===artist ? '' : artist.death_date %>>
+                        <input type="date" name="death_date" id="death_date" value='<%= undefined===artist ? '' : artist.death_date %>'>
                     </label>
                 </div>
                 <label for="country">Country:
-                    <input type="text" name="country" id="country" value=<%= undefined===artist ? '' : artist.country %>>
+                    <input type="text" name="country" id="country" value='<%= undefined===artist ? '' : artist.country %>'>
                 </label>
                 <button type="submit">Submit</button>
             </form>

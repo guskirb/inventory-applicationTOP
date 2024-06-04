@@ -16,7 +16,7 @@
       </h1>
       <form method="post">
         <label for="name">Name:
-          <input type="text" name="name" id="genreName">
+          <input type="text" name="name" id="name" value='<%= undefined===genre ? '' : genre.name %>'>
         </label>
         <button type="submit">Submit</button>
       </form>

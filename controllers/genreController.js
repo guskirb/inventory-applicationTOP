@@ -11,7 +11,7 @@ exports.genre_detail = asyncHandler(async (req, res, next) => {
 });
 
 exports.genre_create_get = asyncHandler(async (req, res, next) => {
-    res.render('genre_form', { title: 'Create Genre' });
+    res.render('genre_form', { title: 'Add Genre', genre: undefined });
 });
 
 exports.genre_create_post = [
@@ -27,7 +27,7 @@ exports.genre_create_post = [
 
         if (!errors.isEmpty()) {
             res.render('genre_form', {
-                title: 'Create Genre',
+                title: 'Add Genre',
                 genre: genre,
                 errors: errors.array(),
             });

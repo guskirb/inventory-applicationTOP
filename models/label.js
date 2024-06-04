@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 
 const LabelSchema = new Schema({
     name: { type: String, required: true, maxLength: 100 },
-    founded: { type: Date },
+    founded: { type: Number },
 });
 
 LabelSchema.virtual('url').get(function () {

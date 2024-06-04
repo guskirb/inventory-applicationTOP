@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <%- include('./partials/nav.ejs') %>
+        <div class="mainContainer">
+            <h1>
+                <%= title %>
+            </h1>
+            <form method="post">
+                <label for="name">Label Name:
+                    <input type="text" name="name" id="name" value='<%=undefined===label ? '' : label.name %>'>
+                </label>
+                <label for="founded">Year Founded:
+                    <input type="number" name="founded" id="founded" value='<%-undefined===label ? '' : label.founded %>'>
+                </label>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+</body>
+
+</html>

@@ -31,6 +31,10 @@ h1, h2{
   padding: 20px;
 }
 
+.formContainer{
+  padding: 20px;
+}
+
 form {
   display: flex;
   flex-flow: column;

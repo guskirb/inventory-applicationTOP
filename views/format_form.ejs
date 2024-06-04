@@ -10,7 +10,7 @@
 
 <body>
     <%- include('./partials/nav.ejs') %>
-        <div class="mainContainer">
+        <div class="formContainer">
             <h1>
                 <%= title %>
             </h1>
@@ -20,10 +20,10 @@
                     <select for="album" id="album" name="album">
                         <option value="">Select an album</option>
                         <% albums.forEach((album) => { %>
-                            <% if( album !== undefined && album.album !== undefined && (album._id.toString() === album.album._id.toString())) { %>
-                                <option selected value=<%= album._id %>> <%= album.title %></option> 
+                            <% if( format !== undefined && format.album !== undefined && (album._id.toString() === format.album._id.toString())) { %>
+                                <option selected value=<%= album._id %>> <%= album.title + " - " + album.artist.name %> </option> 
                             <% } else { %>
-                                <option value=<%= album._id %>> <%= album.title %></option>
+                                <option value=<%= album._id %>> <%= album.title + " - " + album.artist.name %> </option>
                              <% } %> 
                         <% }) %>
                     </select>

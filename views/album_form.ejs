@@ -20,7 +20,7 @@
                 </label>
                 <label for="'artist">Artist:
                     <select for="artist" id="artist" name="artist">
-                        <option value="">Please select an artist</option>
+                        <option value="">Select an artist</option>
                         <% artists.forEach((artist) => { %>
                             <% if( album !== undefined && album.artist !== undefined && (artist._id.toString() === album.artist._id.toString())) { %>
                                 <option selected value=<%= artist._id %>> <%= artist.name %></option> 
@@ -35,7 +35,7 @@
                 </label>
                 <label for="'artist">Label 
                     <select for="label" id="label" name="label">
-                        <option value="">Please select an label</option>
+                        <option value="">Select a label</option>
                         <% labels.forEach((label) => { %>
                             <% if( album !== undefined && album.label !== undefined && (label._id.toString() === album.label._id.toString())) { %>
                                 <option selected value=<%= label._id %>> <%= label.name %></option> 
@@ -47,7 +47,7 @@
                 </label>
                 <label for="genre"> Genre:
                     <select for="genre" id="genre" name="genre">
-                        <option value="">Please select a genre</option>
+                        <option value="">Select a genre</option>
                         <% genres.forEach((genre) => { %>
                             <% if( album !== undefined && album.genre !== undefined && (genre._id.toString() === album.genre._id.toString())) { %>
                                 <option selected value=<%= genre._id %>> <%= genre.name %></option> 

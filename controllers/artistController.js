@@ -52,7 +52,6 @@ exports.artist_create_post = [
         })
 
         if (!errors.isEmpty()) {
-            console.log(artist, errors)
             res.render('artist_form', {
                 title: 'Add Artist',
                 artist: artist,

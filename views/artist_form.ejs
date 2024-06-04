@@ -25,10 +25,10 @@
                 </div>
                 <div class="formCoupled">
                     <label for="birth_date">Date of Birth:
-                        <input type="date" name="birth_date" id="birth_date" value='<%= undefined===artist ? '' : artist.birth_date %>'>
+                        <input type="date" name="birth_date" id="birth_date" value='<%= undefined===artist ? '' : artist.birth_dd_mm_yyyy %>'>
                     </label>
                     <label for="death_date">Date of Death:
-                        <input type="date" name="death_date" id="death_date" value='<%= undefined===artist ? '' : artist.death_date %>'>
+                        <input type="date" name="death_date" id="death_date" value='<%= undefined===artist ? '' : artist.death_dd_mm_yyyy %>'>
                     </label>
                 </div>
                 <label for="country">Country:

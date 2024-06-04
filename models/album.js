@@ -8,12 +8,16 @@ const AlbumSchema = new Schema({
     artist: { type: Schema.Types.ObjectId, ref: 'Artist', required: true },
     release_date: { type: Date, required: true },
     label: { type: Schema.Types.ObjectId, ref: 'Label', required: true },
-    genre: [{ type: Schema.Types.ObjectId, ref: "Genre" }],
+    genre: { type: Schema.Types.ObjectId, ref: "Genre" },
 });
 
 AlbumSchema.virtual('release_date_formatted').get(function () {
     const year = DateTime.fromJSDate(this.release_date).toObject();
     return year.year;
+});
+
+AlbumSchema.virtual('release_dd_mm_yyyy').get(function () {
+    return  DateTime.fromJSDate(this.release_date).toISODate();
 });
 
 AlbumSchema.virtual('url').get(function () {

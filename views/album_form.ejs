@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <%- include('./partials/nav.ejs') %>
+        <div class="mainContainer">
+            <h1>
+                <%= title %>
+            </h1>
+            <form method="post">
+                <label for="title">Title
+                    <input type="text" name="title" id="title" value='<%= undefined===album ? '' : album.title %>'>
+                </label>
+                <label for="'artist">Artist:
+                    <select for="artist" id="artist" name="artist">
+                        <option value="">Please select an artist</option>
+                        <% artists.forEach((artist) => { %>
+                            <% if( album !== undefined && album.artist !== undefined && (artist._id.toString() === album.artist._id.toString())) { %>
+                                <option selected value=<%= artist._id %>> <%= artist.name %></option> 
+                            <% } else { %>
+                                <option value=<%= artist._id %>> <%= artist.name %></option>
+                             <% } %> 
+                        <% }) %>
+                    </select>
+                </label>
+                <label for="release_date">Release Date:
+                    <input type="date" name="release_date" id="release_date" value='<%= undefined===album ? '' : album.release_dd_mm_yyyy %>'>
+                </label>
+                <label for="'artist">Label 
+                    <select for="label" id="label" name="label">
+                        <option value="">Please select an label</option>
+                        <% labels.forEach((label) => { %>
+                            <% if( album !== undefined && album.label !== undefined && (label._id.toString() === album.label._id.toString())) { %>
+                                <option selected value=<%= label._id %>> <%= label.name %></option> 
+                            <% } else { %>
+                                <option value=<%= label._id %>> <%= label.name %></option>
+                            <% } %> 
+                        <% }) %>
+                    </select>
+                </label>
+                <label for="genre"> Genre:
+                    <select for="genre" id="genre" name="genre">
+                        <option value="">Please select a genre</option>
+                        <% genres.forEach((genre) => { %>
+                            <% if( album !== undefined && album.genre !== undefined && (genre._id.toString() === album.genre._id.toString())) { %>
+                                <option selected value=<%= genre._id %>> <%= genre.name %></option> 
+                            <% } else { %>
+                                <option value=<%= genre._id %>> <%= genre.name %></option>
+                            <% } %> 
+                        <% }) %>
+                    </select>
+                </label>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+</body>

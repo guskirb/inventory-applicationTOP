@@ -27,6 +27,14 @@ ArtistSchema.virtual('lifespan').get(function () {
     }
 });
 
+ArtistSchema.virtual('birth_dd_mm_yyyy').get(function () {
+    return  DateTime.fromJSDate(this.birth_date).toISODate();
+});
+
+ArtistSchema.virtual('death_dd_mm_yyyy').get(function () {
+    return  DateTime.fromJSDate(this.death_date).toISODate();
+});
+
 ArtistSchema.virtual('url').get(function () {
     return `/artist/${this._id}`;
 });

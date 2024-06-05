@@ -1,4 +1,5 @@
 const Label = require('../models/label');
+const Album = require('../models/album');
 const { body, validationResult } = require('express-validator');
 const asyncHandler = require('express-async-handler');
 
@@ -12,7 +13,21 @@ exports.label_list = asyncHandler(async (req, res, next) => {
 });
 
 exports.label_detail = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED");
+    const [label, allAlbumsByLabel] = await Promise.all([
+        Label.findById(req.params.id),
+        Album.find({ label: req.params.id }),
+    ]);
+
+    if (label === null) {
+        const err = new Error('Label not found');
+        err.status = 404;
+        return next(err);
+    }
+
+    res.render('label_detail', {
+        label: label,
+        label_albums: allAlbumsByLabel,
+    });
 });
 
 exports.label_create_get = asyncHandler(async (req, res, next) => {

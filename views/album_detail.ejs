@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= album.title %>
+    </title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <%- include('./partials/nav.ejs') %>
+        <div class="formContainer">
+            <h1>
+                <a href=<%- album.artist.url %>><%= album.artist.name %></a>
+                - <%= album.title %>
+            </h1>
+            <h2>
+                Label:
+                <a href=<%- album.label.url %>><%= album.label.name %></a>
+            </h2>
+            <h2>
+                Released: <%= album.release_date_formatted %>
+            </h2>
+            <h2>
+                Genre: 
+                <a href=<%- album.genre.url %>><%= album.genre.name %></a>
+            </h2>
+        </div>
+</body>

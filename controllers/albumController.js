@@ -15,7 +15,17 @@ exports.album_list = asyncHandler(async (req, res, next) => {
 });
 
 exports.album_detail = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED");
+    const album = await Album.findById(req.params.id).populate('artist label genre').exec();
+
+    if (album === null) {
+        const err = new Error('Album not found');
+        err.status = 404;
+        return next(err);
+    }
+    
+    res.render('album_detail', {
+        album: album,
+    });
 });
 
 exports.album_create_get = asyncHandler(async (req, res, next) => {

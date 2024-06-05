@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <%- include('./partials/nav.ejs') %>
+        <div class="formContainer">
+            <h1>
+                <%= title %>
+            </h1>
+            <% artists.forEach((artist) => { %>
+                <a href=<%- artist.url %>>
+                    <h2> 
+                        <%= artist.name %>
+                    </h2>
+                </a>
+            <% }) %>
+        </div>
+</body>

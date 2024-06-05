@@ -4,7 +4,12 @@ const asyncHandler = require('express-async-handler');
 const { body, validationResult } = require('express-validator');
 
 exports.format_list = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED");
+    const allFormats = await Format.find().populate('album').sort().exec();
+    
+    res.render('format_list', {
+        title: 'All Releases',
+        formats: allFormats,
+    });
 });
 
 exports.format_detail = asyncHandler(async (req, res, next) => {

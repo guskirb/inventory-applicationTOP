@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <%- include('./partials/nav.ejs') %>
+        <div class="formContainer">
+            <h1>
+                <%= title %>
+            </h1>
+            <% albums.forEach((album) => { %>
+                <a href=<%- album.url %>>
+                    <h2> 
+                        <%= album.title %>
+                    </h2>
+                </a>
+            <% }) %>
+        </div>
+</body>

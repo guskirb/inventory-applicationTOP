@@ -8,9 +8,6 @@ const genre_controller = require('../controllers/genreController');
 const label_controller = require('../controllers/labelController');
 const index_controller = require('../controllers/indexController');
 
-// Homepage route
-router.get('/', index_controller.index);
-
 // Album routes
 router.get('/albums', album_controller.album_list);
 

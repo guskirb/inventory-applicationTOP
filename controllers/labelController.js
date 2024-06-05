@@ -3,7 +3,12 @@ const { body, validationResult } = require('express-validator');
 const asyncHandler = require('express-async-handler');
 
 exports.label_list = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED");
+    const allLabels = await Label.find().sort({ name: 1 }).exec();
+
+    res.render('label_list', {
+        title: 'All Labels',
+        labels: allLabels,
+    });
 });
 
 exports.label_detail = asyncHandler(async (req, res, next) => {

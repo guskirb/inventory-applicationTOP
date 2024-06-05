@@ -6,7 +6,12 @@ const asyncHandler = require('express-async-handler');
 const { body, validationResult } = require('express-validator');
 
 exports.album_list = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED");
+    const allAlbums = await Album.find().sort({ title: 1 }).exec();
+
+    res.render('album_list', {
+        title: 'All Albums',
+        albums: allAlbums,
+    });
 });
 
 exports.album_detail = asyncHandler(async (req, res, next) => {

@@ -1,17 +1,38 @@
 const Artist = require('../models/artist');
+const Album = require('../models/album');
 const asyncHandler = require('express-async-handler');
 const { body, validationResult } = require('express-validator');
 
 exports.artist_list = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED");
+    const allArtists = await Artist.find().sort({ last_name: 1 }).exec();
+
+    res.render('artist_list', {
+        title: 'All Artists',
+        artists: allArtists,
+    });
 });
 
 exports.artist_detail = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED");
+    const [artist, allAlbumsByArtist] = await Promise.all([
+        Artist.findById(req.params.id).exec(),
+        Album.find({ artist: req.params.id }, 'title release_date label').populate('label').exec(),
+    ]);
+
+    if (artist === null) {
+        const err = new Error('Artist not found');
+        err.status = 404;
+        return next(err);
+    }
+
+    res.render('artist_detail', {
+        title: 'Artist Details',
+        artist: artist,
+        artist_albums: allAlbumsByArtist,
+    });
 });
 
 exports.artist_create_get = asyncHandler(async (req, res, next) => {
-    res.render('artist_form', { title: 'Add Artist' , artist: undefined});
+    res.render('artist_form', { title: 'Add Artist', artist: undefined });
 });
 
 exports.artist_create_post = [

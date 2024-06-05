@@ -6,7 +6,7 @@ const { body, validationResult } = require('express-validator');
 exports.genre_list = asyncHandler(async (req, res, next) => {
     const allGenres = await Genre.find().sort({ name: 1 }).exec();
 
-    res.render('genre_list', {
+    res.render('./genre/genre_list', {
         title: 'All Genres',
         genres: allGenres,
     });
@@ -24,14 +24,14 @@ exports.genre_detail = asyncHandler(async (req, res, next) => {
         return next(err);
     }
 
-    res.render('genre_detail', {
+    res.render('./genre/genre_detail', {
         genre: genre,
         albums: allAlbumsByGenre,
     });
 });
 
 exports.genre_create_get = asyncHandler(async (req, res, next) => {
-    res.render('genre_form', { title: 'Add Genre', genre: undefined });
+    res.render('./genre/genre_form', { title: 'Add Genre', genre: undefined });
 });
 
 exports.genre_create_post = [
@@ -46,7 +46,7 @@ exports.genre_create_post = [
         const genre = new Genre({ name: req.body.name });
 
         if (!errors.isEmpty()) {
-            res.render('genre_form', {
+            res.render('./genre/genre_form', {
                 title: 'Add Genre',
                 genre: genre,
                 errors: errors.array(),
@@ -83,7 +83,7 @@ exports.genre_update_get = asyncHandler(async (req, res, next) => {
         return next(err);
     }
     
-    res.render('genre_form', {
+    res.render('./genre/genre_form', {
         title: 'Update Genre',
         genre: genre,
     });

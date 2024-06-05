@@ -9,15 +9,15 @@
 </head>
 
 <body>
-    <%- include('./partials/nav.ejs') %>
+    <%- include('../partials/nav.ejs') %>
         <div class="mainContainer">
             <h1>
                 <%= title %>
             </h1>
-            <% albums.forEach((album) => { %>
-                <a href=<%- album.url %>>
+            <% labels.forEach((label) => { %>
+                <a href=<%- label.url %>>
                     <h2> 
-                        <%= album.title %>
+                        <%= label.name %>
                     </h2>
                 </a>
             <% }) %>

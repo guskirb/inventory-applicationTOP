@@ -6,7 +6,7 @@ const asyncHandler = require('express-async-handler');
 exports.label_list = asyncHandler(async (req, res, next) => {
     const allLabels = await Label.find().sort({ name: 1 }).exec();
 
-    res.render('label_list', {
+    res.render('./label/label_list', {
         title: 'All Labels',
         labels: allLabels,
     });
@@ -24,14 +24,14 @@ exports.label_detail = asyncHandler(async (req, res, next) => {
         return next(err);
     }
 
-    res.render('label_detail', {
+    res.render('./label/label_detail', {
         label: label,
         label_albums: allAlbumsByLabel,
     });
 });
 
 exports.label_create_get = asyncHandler(async (req, res, next) => {
-    res.render('label_form', { title: 'Add Label', label: undefined });
+    res.render('./label/label_form', { title: 'Add Label', label: undefined });
 });
 
 exports.label_create_post = [
@@ -56,7 +56,7 @@ exports.label_create_post = [
 
         if (!errors.isEmpty()) {
             console.log(label)
-            res.render('label_form', {
+            res.render('./label/label_form', {
                 title: 'Add Label',
                 label: label,
                 errors: errors.array(),
@@ -85,7 +85,7 @@ exports.label_update_get = asyncHandler(async (req, res, next) => {
         return next(err);
     };
 
-    res.render('label_form', {
+    res.render('./label/label_form', {
         title: 'Update Label',
         label: label,
     });

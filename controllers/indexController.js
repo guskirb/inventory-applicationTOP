@@ -17,7 +17,7 @@ exports.index = asyncHandler(async (req, res, next) => {
     ]);
     console.log(allFormats)
     res.render('index', {
-        title: 'Music Inventory',
+        title: 'Dashboard',
         albums: allAlbums,
         formats: allFormats,
     })

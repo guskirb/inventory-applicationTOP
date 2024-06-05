@@ -7,7 +7,7 @@ const { format } = require('morgan');
 exports.format_list = asyncHandler(async (req, res, next) => {
     const allFormats = await Format.find().populate('album').sort().exec();
 
-    res.render('format_list', {
+    res.render('./format/format_list', {
         title: 'All Releases',
         formats: allFormats,
     });
@@ -22,7 +22,7 @@ exports.format_detail = asyncHandler(async (req, res, next) => {
         return next(err);
     };
 
-    res.render('format_detail', {
+    res.render('./format/format_detail', {
         format: format,
     });
 });
@@ -30,7 +30,7 @@ exports.format_detail = asyncHandler(async (req, res, next) => {
 exports.format_create_get = asyncHandler(async (req, res, next) => {
     const allAlbums = await Album.find().sort({ title: 1 }).populate('artist').exec();
 
-    res.render('format_form', {
+    res.render('./format/format_form', {
         title: 'Add Release',
         format: undefined,
         albums: allAlbums,
@@ -60,7 +60,7 @@ exports.format_create_post = [
         if (!errors.isEmpty()) {
             const allAlbums = await Album.find().sort({ title: 1 }).populate('artist').exec();
 
-            res.render('format_form', {
+            res.render('./format/format_form', {
                 title: 'Add Release',
                 format: format,
                 albums: allAlbums,
@@ -93,7 +93,7 @@ exports.format_update_get = asyncHandler(async (req, res, next) => {
         return next(err);
     }
 
-    res.render('format_form', {
+    res.render('./format/format_form', {
         title: 'Update Release',
         format: format,
         albums: allAlbums,

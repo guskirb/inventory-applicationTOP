@@ -3,22 +3,22 @@
 
 <head>
     <title>
-        <%= genre.name %>
+        <%= format.album.title %>
     </title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
 
 <body>
-    <%- include('./partials/nav.ejs') %>
+    <%- include('../partials/nav.ejs') %>
         <div class="mainContainer">
             <div class="coupled">
                 <h1>
-                    <%= genre.name %>
+                    <%= format.album.title %>
                 </h1>
-                <a href=<%- genre.url + '/update' %>>
+                <a href=<%- format.url + '/update' %>>
                     <div class="editButton"></div>
                 </a>
-                <a href=<%- genre.url + '/delete' %>>
+                <a href=<%- format.url + '/delete' %>>
                     <div class="deleteButton"></div>
                 </a>
             </div>

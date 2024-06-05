@@ -9,15 +9,15 @@
 </head>
 
 <body>
-    <%- include('./partials/nav.ejs') %>
+    <%- include('../partials/nav.ejs') %>
         <div class="mainContainer">
             <h1>
                 <%= title %>
             </h1>
-            <% artists.forEach((artist) => { %>
-                <a href=<%- artist.url %>>
+            <% formats.forEach((format) => { %>
+                <a href=<%- format.url %>>
                     <h2> 
-                        <%= artist.name %>
+                        <%= format.album.title %>
                     </h2>
                 </a>
             <% }) %>

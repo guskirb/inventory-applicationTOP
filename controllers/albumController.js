@@ -8,7 +8,7 @@ const { body, validationResult } = require('express-validator');
 exports.album_list = asyncHandler(async (req, res, next) => {
     const allAlbums = await Album.find().sort({ title: 1 }).exec();
 
-    res.render('album_list', {
+    res.render('./album/album_list', {
         title: 'All Albums',
         albums: allAlbums,
     });
@@ -23,7 +23,7 @@ exports.album_detail = asyncHandler(async (req, res, next) => {
         return next(err);
     }
 
-    res.render('album_detail', {
+    res.render('./album/album_detail', {
         album: album,
     });
 });
@@ -35,7 +35,7 @@ exports.album_create_get = asyncHandler(async (req, res, next) => {
         Genre.find().sort({ name: 1 }).exec(),
     ]);
 
-    res.render('album_form', {
+    res.render('./album/album_form', {
         title: 'Add Album',
         album: undefined,
         artists: allArtists,
@@ -75,7 +75,7 @@ exports.album_create_post = [
                 Genre.find().sort({ name: 1 }).exec(),
             ]);
 
-            res.render('album_form', {
+            res.render('./album/album_form', {
                 title: 'Add Album',
                 album: album,
                 artists: allArtists,
@@ -112,7 +112,7 @@ exports.album_update_get = asyncHandler(async (req, res, next) => {
         return next(err);
     }
 
-    res.render('album_form', {
+    res.render('./album/album_form', {
         title: 'Add Album',
         album: album,
         artists: allArtists,
@@ -153,7 +153,7 @@ exports.album_update_post = [
                 Genre.find().sort({ name: 1 }).exec(),
             ]);
 
-            res.render('album_form', {
+            res.render('./album/album_form', {
                 title: 'Add Album',
                 album: album,
                 artists: allArtists,

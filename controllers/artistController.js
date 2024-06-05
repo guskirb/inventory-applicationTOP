@@ -94,7 +94,18 @@ exports.artist_delete_post = asyncHandler(async (req, res, next) => {
 });
 
 exports.artist_update_get = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED");
+    const artist = await Artist.findById(req.params.id).exec();
+
+    if (artist === null) {
+        const err = new Error("Artist not found");
+        err.status = 404;
+        return next(err);
+    }
+
+    res.render('artist_form', {
+        title: 'Update Artist',
+        artist: artist,
+    });
 });
 
 exports.artist_update_post = asyncHandler(async (req, res, next) => {

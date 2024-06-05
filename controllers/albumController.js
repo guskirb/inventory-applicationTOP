@@ -22,7 +22,7 @@ exports.album_detail = asyncHandler(async (req, res, next) => {
         err.status = 404;
         return next(err);
     }
-    
+
     res.render('album_detail', {
         album: album,
     });
@@ -98,7 +98,26 @@ exports.album_delete_post = asyncHandler(async (req, res, next) => {
 });
 
 exports.album_update_get = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED");
+    const [album, allArtists, allLabels, allGenres] = await Promise.all([
+        Album.findById(req.params.id).exec(),
+        Artist.find().sort({ last_name: 1 }).exec(),
+        Label.find().sort({ name: 1 }).exec(),
+        Genre.find().sort({ name: 1 }).exec(),
+    ]);
+
+    if (album === null) {
+        const err = new Error("Album not found");
+        err.status = 404;
+        return next(err);
+    }
+
+    res.render('album_form', {
+        title: 'Add Album',
+        album: album,
+        artists: allArtists,
+        labels: allLabels,
+        genres: allGenres,
+    });
 });
 
 exports.album_update_post = asyncHandler(async (req, res, next) => {

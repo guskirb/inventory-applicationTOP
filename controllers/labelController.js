@@ -77,7 +77,18 @@ exports.label_delete_post = asyncHandler(async (req, res, next) => {
 });
 
 exports.label_update_get = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED");
+    const label = await Label.findById(req.params.id).exec();
+
+    if (label === null) {
+        const err = new Error('Label not found');
+        err.status = 404;
+        return next(err);
+    };
+
+    res.render('label_form', {
+        title: 'Update Label',
+        label: label,
+    });
 });
 
 exports.label_update_post = asyncHandler(async (req, res, next) => {

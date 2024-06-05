@@ -82,7 +82,22 @@ exports.format_delete_post = asyncHandler(async (req, res, next) => {
 });
 
 exports.format_update_get = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED");
+    const [format, allAlbums] = await Promise.all([
+        Format.findById(req.params.id).exec(),
+        Album.find().sort({ title: 1 }).populate('artist').exec(),
+    ]);
+
+    if (format === null) {
+        const err = new Error("Release not found");
+        err.status = 404;
+        return next(err);
+    }
+
+    res.render('format_form', {
+        title: 'Update Release',
+        format: format,
+        albums: allAlbums,
+    });
 });
 
 exports.format_update_post = asyncHandler(async (req, res, next) => {

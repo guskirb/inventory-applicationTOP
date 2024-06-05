@@ -10,10 +10,14 @@
 
 <body>
     <%- include('./partials/nav.ejs') %>
-        <div class="formContainer">
+        <div class="mainContainer">
+            <div class="coupled">
             <h1>
                 <%= artist.name %>
             </h1>
-            
+            <a href=<%- artist.url + '/update' %>>
+                <div class="editButton"></div>
+            </a>
+        </div>
         </div>
 </body>

@@ -31,10 +31,6 @@ h1, h2{
   padding: 20px;
 }
 
-.formContainer{
-  padding: 20px;
-}
-
 form {
   display: flex;
   flex-flow: column;
@@ -52,4 +48,14 @@ label{
 .formCoupled {
   display: flex;
   gap: 10px;
+}
+
+.editButton {
+  height: 25px;
+  width: 25px;
+  background-image: url(../images/edit.svg);
+  content: "";
+  background-repeat:no-repeat;
+  background-position: center;
+  background-size:cover;
 }

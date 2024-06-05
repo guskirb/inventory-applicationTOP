@@ -12,7 +12,7 @@
     <%- include('./partials/nav.ejs') %>
         <div class="mainContainer">
             <div class="flex">
-                <img src=<%- album.image===undefined
+                <img src=<%- album.image==="" || undefined
                     ? 'https://iili.io/HlHy9Yx.png' :
                     album.image %> alt="" class="image">
                 <div>

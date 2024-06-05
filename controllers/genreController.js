@@ -1,4 +1,5 @@
 const Genre = require('../models/genre');
+const Album = require('../models/album');
 const asyncHandler = require('express-async-handler');
 const { body, validationResult } = require('express-validator');
 
@@ -12,7 +13,21 @@ exports.genre_list = asyncHandler(async (req, res, next) => {
 });
 
 exports.genre_detail = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED");
+    const [genre, allAlbumsByGenre] = await Promise.all([
+        Genre.findById(req.params.id).exec(),
+        Album.find({ genre: req.params.id }).exec(),
+    ]);
+
+    if (genre === null) {
+        const err = new Error('Genre not found');
+        err.status = 404;
+        return next(err);
+    }
+
+    res.render('genre_detail', {
+        genre: genre,
+        albums: allAlbumsByGenre,
+    });
 });
 
 exports.genre_create_get = asyncHandler(async (req, res, next) => {

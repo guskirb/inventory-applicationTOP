@@ -20,7 +20,7 @@
                     <select for="album" id="album" name="album">
                         <option value="">Select an album</option>
                         <% albums.forEach((album) => { %>
-                            <% if( format !== undefined && format.album !== undefined && (album._id.toString() === format.album._id.toString())) { %>
+                            <% if( format?.album !== undefined && (album._id.toString() === format.album._id.toString())) { %>
                                 <option selected value=<%= album._id %>> <%= album.title + " - " + album.artist.name %> </option> 
                             <% } else { %>
                                 <option value=<%= album._id %>> <%= album.title + " - " + album.artist.name %> </option>
@@ -32,7 +32,7 @@
                     <select for="format" id="format" name="format">
                         <option value="">Select a format</option>
                         <% ['CD', 'Vinyl', 'Cassette Tape', 'Digital'].forEach((item) => { %>
-                            <% if( format !== undefined && format.format !== undefined && (format.format==item)) { %>
+                            <% if( format?.format !== undefined && (format.format==item)) { %>
                                 <option selected value=<%= item %>> <%= item %></option> 
                             <% } else { %>
                                 <option value=<%= item %>> <%= item %></option>

@@ -60,3 +60,13 @@ label{
   background-position: center;
   background-size:cover;
 }
+
+.deleteButton{
+  height: 25px;
+  width: 25px;
+  background-image: url(../images/delete.svg);
+  content: "";
+  background-repeat:no-repeat;
+  background-position: center;
+  background-size:cover;
+}

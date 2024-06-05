@@ -11,9 +11,13 @@
 <body>
     <%- include('./partials/nav.ejs') %>
         <div class="mainContainer">
-            <h1>
-                <%= format.album.title %>
-            </h1>
-            
+            <div class="coupled">
+                <h1>
+                    <%= format.album.title %>
+                </h1>
+                <a href=<%- format.url + '/update' %>>
+                    <div class="editButton"></div>
+                </a>
+            </div>
         </div>
 </body>

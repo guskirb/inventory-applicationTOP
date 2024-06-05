@@ -15,7 +15,7 @@
                 <%= title %>
             </h1>
             <form method="post">
-                <div class="formCoupled">
+                <div class="coupled">
                     <label for="first_name">First Name:
                         <input type="text" name="first_name" id="first_name" value='<%= undefined===artist ? '' : artist.first_name %>'>
                     </label>
@@ -23,7 +23,7 @@
                         <input type="text" name="last_name" id="last_name" value='<%= undefined===artist ? '' : artist.last_name %>'>
                     </label>
                 </div>
-                <div class="formCoupled">
+                <div class="coupled">
                     <label for="birth_date">Date of Birth:
                         <input type="date" name="birth_date" id="birth_date" value='<%= undefined===artist ? '' : artist.birth_dd_mm_yyyy %>'>
                     </label>

@@ -11,10 +11,15 @@
 <body>
     <%- include('./partials/nav.ejs') %>
         <div class="mainContainer">
-            <h1>
-                <a href=<%- album.artist.url %>><%= album.artist.name %></a>
-                - <%= album.title %>
-            </h1>
+            <div class="coupled">
+                <h1>
+                    <a href=<%- album.artist.url %>><%= album.artist.name %></a>
+                    - <%= album.title %>
+                </h1>
+                <a href=<%- album.url + '/update' %>>
+                    <div class="editButton"></div>
+                </a>
+            </div>
             <h2>
                 Label:
                 <a href=<%- album.label.url %>><%= album.label.name %></a>
@@ -23,7 +28,7 @@
                 Released: <%= album.release_date_formatted %>
             </h2>
             <h2>
-                Genre: 
+                Genre:
                 <a href=<%- album.genre.url %>><%= album.genre.name %></a>
             </h2>
         </div>

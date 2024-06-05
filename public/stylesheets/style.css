@@ -45,9 +45,10 @@ label{
   gap:5px;
 }
 
-.formCoupled {
+.coupled {
   display: flex;
   gap: 10px;
+  align-items: center;
 }
 
 .editButton {

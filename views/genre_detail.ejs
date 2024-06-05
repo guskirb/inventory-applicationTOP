@@ -11,8 +11,13 @@
 <body>
     <%- include('./partials/nav.ejs') %>
         <div class="mainContainer">
-            <h1>
-                <%= genre.name %>
-            </h1>
+            <div class="coupled">
+                <h1>
+                    <%= genre.name %>
+                </h1>
+                <a href=<%- genre.url + '/update' %>>
+                    <div class="editButton"></div>
+                </a>
+            </div>
         </div>
 </body>

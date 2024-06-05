@@ -2,10 +2,11 @@ const Format = require('../models/format');
 const Album = require('../models/album');
 const asyncHandler = require('express-async-handler');
 const { body, validationResult } = require('express-validator');
+const { format } = require('morgan');
 
 exports.format_list = asyncHandler(async (req, res, next) => {
     const allFormats = await Format.find().populate('album').sort().exec();
-    
+
     res.render('format_list', {
         title: 'All Releases',
         formats: allFormats,
@@ -13,7 +14,17 @@ exports.format_list = asyncHandler(async (req, res, next) => {
 });
 
 exports.format_detail = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED");
+    const format = await Format.findById(req.params.id).populate('album').exec();
+
+    if (format === null) {
+        const err = new Error('Release not found');
+        err.status = 404;
+        return next(err);
+    };
+
+    res.render('format_detail', {
+        format: format,
+    });
 });
 
 exports.format_create_get = asyncHandler(async (req, res, next) => {

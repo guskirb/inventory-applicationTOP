@@ -35,5 +35,22 @@
                     </h2>
                 </div>
             </div>
+            <h2>Releases</h2>
+            <div class="listContainer">
+                <% artist_albums.forEach((album)=> { %>
+                    <div>
+                        <a href=<%- album.url %>>
+                            <img src=<%- album.image==="" || undefined ? 'https://iili.io/HlHy9Yx.png' : album.image %>
+                            alt="" class="imageSmall">
+                            <h2>
+                                <%= album.title %>
+                            </h2>
+                        </a>
+                        <p>
+                            <%= album.release_date_formatted %>
+                        </p>
+                    </div>
+                    <% }) %>
+            </div>
         </div>
 </body>

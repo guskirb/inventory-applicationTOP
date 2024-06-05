@@ -14,8 +14,8 @@ exports.label_list = asyncHandler(async (req, res, next) => {
 
 exports.label_detail = asyncHandler(async (req, res, next) => {
     const [label, allAlbumsByLabel] = await Promise.all([
-        Label.findById(req.params.id),
-        Album.find({ label: req.params.id }),
+        Label.findById(req.params.id).exec(),
+        Album.find({ label: req.params.id }).populate('artist').exec(),
     ]);
 
     if (label === null) {

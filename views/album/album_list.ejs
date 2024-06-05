@@ -14,12 +14,27 @@
             <h1>
                 <%= title %>
             </h1>
-            <% albums.forEach((album) => { %>
-                <a href=<%- album.url %>>
-                    <h2> 
-                        <%= album.title %>
-                    </h2>
-                </a>
-            <% }) %>
+            <div class="listContainer">
+                <% albums.forEach((album)=> { %>
+                    <div>
+                        <a href=<%- album.url %>>
+                            <img src=<%- album.image==="" || undefined ? 'https://iili.io/HlHy9Yx.png' : album.image %>
+                            alt=""
+                            class="imageSmall">
+                            <h2>
+                                <%= album.title %>
+                            </h2>
+                        </a>
+                        <a href=<%- album.artist.url %>>
+                            <p>
+                                <%= album.artist.name %>
+                            </p>
+                        </a>
+                        <p>
+                            <%= album.release_date_formatted %>
+                        </p>
+                    </div>
+                    <% }) %>
+            </div>
         </div>
 </body>

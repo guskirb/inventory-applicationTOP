@@ -6,7 +6,7 @@ const asyncHandler = require('express-async-handler');
 const { body, validationResult } = require('express-validator');
 
 exports.album_list = asyncHandler(async (req, res, next) => {
-    const allAlbums = await Album.find().sort({ title: 1 }).exec();
+    const allAlbums = await Album.find().sort({ title: 1 }).populate('artist').exec();
 
     res.render('./album/album_list', {
         title: 'All Albums',

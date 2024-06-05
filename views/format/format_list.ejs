@@ -14,12 +14,33 @@
             <h1>
                 <%= title %>
             </h1>
-            <% formats.forEach((format) => { %>
-                <a href=<%- format.url %>>
-                    <h2> 
-                        <%= format.album.title %>
-                    </h2>
-                </a>
-            <% }) %>
+            <div class="listContainer">
+                <% formats.forEach((format)=> { %>
+                    <div>
+                        <a href=<%- format.url %>>
+                            <img src=<%- format.album.image==="" || undefined ? 'https://iili.io/HlHy9Yx.png' :
+                                format.album.image %>
+                            alt=""
+                            class="imageSmall">
+                            <h2>
+                                <%= format.album.title %>
+                            </h2>
+                        </a>
+                        <a href=<%- format.album.artist.url %>>
+                            <p>
+                                <%= format.album.artist.name %>
+                            </p>
+                        </a>
+                        <p>
+                            <%= format.album.release_date_formatted %>
+                        </p>
+                        <a href=<%- format.url %>>
+                            <p>
+                                <%= format.format %>
+                            </p>
+                        </a>
+                    </div>
+                    <% }) %>
+            </div>
         </div>
 </body>

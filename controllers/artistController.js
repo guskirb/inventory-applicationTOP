@@ -15,7 +15,7 @@ exports.artist_list = asyncHandler(async (req, res, next) => {
 exports.artist_detail = asyncHandler(async (req, res, next) => {
     const [artist, allAlbumsByArtist] = await Promise.all([
         Artist.findById(req.params.id).exec(),
-        Album.find({ artist: req.params.id }, 'title release_date label').populate('label').exec(),
+        Album.find({ artist: req.params.id }, 'title release_date label image').populate('label').exec(),
     ]);
 
     if (artist === null) {

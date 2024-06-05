@@ -15,7 +15,7 @@ exports.genre_list = asyncHandler(async (req, res, next) => {
 exports.genre_detail = asyncHandler(async (req, res, next) => {
     const [genre, allAlbumsByGenre] = await Promise.all([
         Genre.findById(req.params.id).exec(),
-        Album.find({ genre: req.params.id }).exec(),
+        Album.find({ genre: req.params.id }).populate('artist').exec(),
     ]);
 
     if (genre === null) {

@@ -5,8 +5,15 @@ const { body, validationResult } = require('express-validator');
 const { format } = require('morgan');
 
 exports.format_list = asyncHandler(async (req, res, next) => {
-    const allFormats = await Format.find().populate('album').sort().exec();
+    const allFormats = await Format.find().populate({
+        path: 'album',
+        populate: {
+            path: 'artist',
+            model: 'Artist'
+        },
 
+    }).sort().exec();
+    console.log(allFormats);
     res.render('./format/format_list', {
         title: 'All Releases',
         formats: allFormats,

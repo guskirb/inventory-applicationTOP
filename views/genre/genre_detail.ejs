@@ -22,5 +22,24 @@
                     <div class="deleteButton"></div>
                 </a>
             </div>
+            <h2>
+                <%= genre.name %> Releases
+            </h2>
+            <div class="listContainer">
+                <% albums.forEach((album)=> { %>
+                    <div>
+                        <a href=<%- album.url %>>
+                            <img src=<%- album.image==="" || undefined ? 'https://iili.io/HlHy9Yx.png' : album.image %>
+                            alt="" class="imageSmall">
+                            <h2>
+                                <%= album.title %>
+                            </h2>
+                            <p>
+                                <%= album.artist.name %>
+                            </p>
+                        </a>
+                    </div>
+                    <% }) %>
+            </div>
         </div>
 </body>

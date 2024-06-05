@@ -14,12 +14,18 @@
             <h1>
                 <%= title %>
             </h1>
-            <% artists.forEach((artist) => { %>
-                <a href=<%- artist.url %>>
-                    <h2> 
-                        <%= artist.name %>
-                    </h2>
-                </a>
-            <% }) %>
+            <div class="listContainer">
+                <% artists.forEach((artist)=> { %>
+                    <div>
+                        <a href=<%- artist.url %>>
+                            <img src=<%- artist.image==="" || undefined ? 'https://iili.io/HlHy9Yx.png' : artist.image
+                                %> alt="" class="imageSmall">
+                            <h2>
+                                <%= artist.name %>
+                            </h2>
+                        </a>
+                    </div>
+                    <% }) %>
+            </div>
         </div>
 </body>

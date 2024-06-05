@@ -69,7 +69,8 @@ exports.artist_create_post = [
             birth_date: req.body.birth_date,
             death_date: req.body.death_date,
             country: req.body.country,
-        })
+            image: req.body.image,
+        });
 
         if (!errors.isEmpty()) {
             res.render('artist_form', {

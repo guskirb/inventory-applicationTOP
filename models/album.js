@@ -9,6 +9,7 @@ const AlbumSchema = new Schema({
     release_date: { type: Date, required: true },
     label: { type: Schema.Types.ObjectId, ref: 'Label', required: true },
     genre: { type: Schema.Types.ObjectId, ref: "Genre" },
+    image: { type: String, maxLength: 100 },
 });
 
 AlbumSchema.virtual('release_date_formatted').get(function () {

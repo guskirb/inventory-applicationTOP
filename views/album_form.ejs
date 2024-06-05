@@ -61,7 +61,10 @@
                     </select>
                 </label>
             </div>
-                <button type="submit">Submit</button>
+            <label for="image">Image URL:
+                <input type="text" name="image" id="image" value='<%= undefined===album ? '' : album.image %>'>
+            </label>
+            <button type="submit">Submit</button>
             </form>
         </div>
 </body>

@@ -9,6 +9,7 @@ const ArtistSchema = new Schema({
     birth_date: { type: Date, required: true },
     death_date: { type: Date },
     country: { type: String, maxLength: 100 },
+    image: { type: String, maxLength: 100 },
 });
 
 ArtistSchema.virtual('name').get(function () {
@@ -23,7 +24,7 @@ ArtistSchema.virtual('lifespan').get(function () {
     if (this.birth_date && this.death_date) {
         return `Born: ${DateTime.fromJSDate(this.birth_date).toLocaleString(DateTime.DATE_MED)}, Died: ${DateTime.fromJSDate(this.death_date).toLocaleString(DateTime.DATE_MED)}`;
     } else {
-        `Born: ${DateTime.fromJSDate(this.birth_date).toLocaleString(DateTime.DATE_MED)}`;
+        return `Born: ${DateTime.fromJSDate(this.birth_date).toLocaleString(DateTime.DATE_MED)}`;
     }
 });
 

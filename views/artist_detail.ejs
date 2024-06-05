@@ -11,16 +11,29 @@
 <body>
     <%- include('./partials/nav.ejs') %>
         <div class="mainContainer">
-            <div class="coupled">
-                <h1>
-                    <%= artist.name %>
-                </h1>
-                <a href=<%- artist.url + '/update' %>>
-                    <div class="editButton"></div>
-                </a>
-                <a href=<%- artist.url + '/delete' %>>
-                    <div class="deleteButton"></div>
-                </a>
+            <div class="flex">
+                <img src=<%- artist.image===undefined
+                    ? 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png' :
+                    artist.image %> alt="" class="image">
+                <div>
+                    <div class="coupled">
+                        <h1>
+                            <%= artist.name %>
+                        </h1>
+                        <a href=<%- artist.url + '/update' %>>
+                            <div class="editButton"></div>
+                        </a>
+                        <a href=<%- artist.url + '/delete' %>>
+                            <div class="deleteButton"></div>
+                        </a>
+                    </div>
+                    <h2>
+                        <%= artist.lifespan %>
+                    </h2>
+                    <h2>
+                        <%= artist.country===undefined ? 'Country: Unknown' : 'Country: ' + artist.country %>
+                    </h2>
+                </div>
             </div>
         </div>
 </body>

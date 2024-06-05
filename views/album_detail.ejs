@@ -11,28 +11,35 @@
 <body>
     <%- include('./partials/nav.ejs') %>
         <div class="mainContainer">
-            <div class="coupled">
-                <h1>
-                    <a href=<%- album.artist.url %>><%= album.artist.name %></a>
-                    - <%= album.title %>
-                </h1>
-                <a href=<%- album.url + '/update' %>>
-                    <div class="editButton"></div>
-                </a>
-                <a href=<%- album.url + '/delete' %>>
-                    <div class="deleteButton"></div>
-                </a>
+            <div class="flex">
+                <img src=<%- album.image===undefined
+                    ? 'https://iili.io/HlHy9Yx.png' :
+                    album.image %> alt="" class="image">
+                <div>
+                    <div class="coupled">
+                        <h1>
+                            <a href=<%- album.artist.url %>><%= album.artist.name %></a>
+                            - <%= album.title %>
+                        </h1>
+                        <a href=<%- album.url + '/update' %>>
+                            <div class="editButton"></div>
+                        </a>
+                        <a href=<%- album.url + '/delete' %>>
+                            <div class="deleteButton"></div>
+                        </a>
+                    </div>
+                    <h2>
+                        Label:
+                        <a href=<%- album.label.url %>><%= album.label.name %></a>
+                    </h2>
+                    <h2>
+                        Released: <%= album.release_date_formatted %>
+                    </h2>
+                    <h2>
+                        Genre:
+                        <a href=<%- album.genre.url %>><%= album.genre.name %></a>
+                    </h2>
+                </div>
             </div>
-            <h2>
-                Label:
-                <a href=<%- album.label.url %>><%= album.label.name %></a>
-            </h2>
-            <h2>
-                Released: <%= album.release_date_formatted %>
-            </h2>
-            <h2>
-                Genre:
-                <a href=<%- album.genre.url %>><%= album.genre.name %></a>
-            </h2>
         </div>
 </body>

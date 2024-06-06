@@ -91,6 +91,37 @@ exports.label_update_get = asyncHandler(async (req, res, next) => {
     });
 });
 
-exports.label_update_post = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED");
-});
+exports.label_update_post = [
+    body('name', 'Label name must contain at least 1 character.')
+        .trim()
+        .isLength({ min: 1 })
+        .escape(),
+    body('founded', "Founded must not be empty")
+        .trim()
+        .isLength({ min: 4 })
+        .isNumeric()
+        .escape(),
+    asyncHandler(async (req, res, next) => {
+        const errors = validationResult(req);
+
+        console.log(req.body)
+
+        const label = new Label({
+            name: req.body.name,
+            founded: req.body.founded,
+            _id: req.params.id,
+        });
+
+        if (!errors.isEmpty()) {
+            console.log(label)
+            res.render('./label/label_form', {
+                title: 'Add Label',
+                label: label,
+                errors: errors.array(),
+            });
+        } else {
+            const updatedLabel = await Label.findByIdAndUpdate(req.params.id, label, {});
+            res.redirect(updatedLabel.url);
+        }
+    }),
+];

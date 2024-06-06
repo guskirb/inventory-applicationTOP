@@ -13,15 +13,14 @@ exports.artist_list = asyncHandler(async (req, res, next) => {
 });
 
 exports.artist_detail = asyncHandler(async (req, res, next) => {
-    const [artist, allAlbumsByArtist] = await Promise.all([
-        Artist.findById(req.params.id).exec(),
-        Album.find({ artist: req.params.id }, 'title release_date label image').populate('label').exec(),
-    ]);
-
-    if (artist === null) {
-        const err = new Error('Artist not found');
-        err.status = 404;
-        return next(err);
+    let artist, allAlbumsByArtist;
+    try {
+        [artist, allAlbumsByArtist] = await Promise.all([
+            Artist.findById(req.params.id).exec(),
+            Album.find({ artist: req.params.id }, 'title release_date label image').populate('label').exec(),
+        ]);
+    } catch (err) {
+        res.redirect('/category/artists');
     }
 
     res.render('./artist/artist_detail', {
@@ -84,7 +83,16 @@ exports.artist_create_post = [
 ];
 
 exports.artist_delete_get = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED");
+    let artist, allAlbumsByArtist;
+    try {
+        [artist, allAlbumsByArtist] = await Promise.all([
+            Artist.findById(req.params.id).exec(),
+            Album.find({ artist: req.params.id }).exec(),
+        ]);
+    } catch (err) {
+        res.redirect('/category/artists');
+    }
+
 });
 
 exports.artist_delete_post = asyncHandler(async (req, res, next) => {
@@ -92,12 +100,11 @@ exports.artist_delete_post = asyncHandler(async (req, res, next) => {
 });
 
 exports.artist_update_get = asyncHandler(async (req, res, next) => {
-    const artist = await Artist.findById(req.params.id).exec();
-
-    if (artist === null) {
-        const err = new Error("Artist not found");
-        err.status = 404;
-        return next(err);
+    let artist;
+    try {
+        artist = await Artist.findById(req.params.id).exec();
+    } catch (err) {
+        res.redirect('/category/artists');
     }
 
     res.render('./artist/artist_form', {

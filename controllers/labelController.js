@@ -13,15 +13,14 @@ exports.label_list = asyncHandler(async (req, res, next) => {
 });
 
 exports.label_detail = asyncHandler(async (req, res, next) => {
-    const [label, allAlbumsByLabel] = await Promise.all([
-        Label.findById(req.params.id).exec(),
-        Album.find({ label: req.params.id }).populate('artist').exec(),
-    ]);
-
-    if (label === null) {
-        const err = new Error('Label not found');
-        err.status = 404;
-        return next(err);
+    let label, allAlbumsByLabel;
+    try {
+        [label, allAlbumsByLabel] = await Promise.all([
+            Label.findById(req.params.id).exec(),
+            Album.find({ label: req.params.id }).populate('artist').exec(),
+        ]);
+    } catch (err) {
+        res.redirect('/category/labels');
     }
 
     res.render('./label/label_detail', {
@@ -48,8 +47,6 @@ exports.label_create_post = [
         .escape(),
     asyncHandler(async (req, res, next) => {
         const errors = validationResult(req);
-
-        console.log(req.body)
 
         const label = new Label({
             name: req.body.name,
@@ -79,13 +76,12 @@ exports.label_delete_post = asyncHandler(async (req, res, next) => {
 });
 
 exports.label_update_get = asyncHandler(async (req, res, next) => {
-    const label = await Label.findById(req.params.id).exec();
-
-    if (label === null) {
-        const err = new Error('Label not found');
-        err.status = 404;
-        return next(err);
-    };
+    let label;
+    try {
+        label = await Label.findById(req.params.id).exec();
+    } catch (err) {
+        res.redirect('/category/labels');
+    }
 
     res.render('./label/label_form', {
         title: 'Update Label',

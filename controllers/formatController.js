@@ -20,13 +20,12 @@ exports.format_list = asyncHandler(async (req, res, next) => {
 });
 
 exports.format_detail = asyncHandler(async (req, res, next) => {
-    const format = await Format.findById(req.params.id).populate('album').exec();
-
-    if (format === null) {
-        const err = new Error('Release not found');
-        err.status = 404;
-        return next(err);
-    };
+    let format;
+    try {
+        format = await Format.findById(req.params.id).populate('album').exec();
+    } catch (err) {
+        res.redirect('/category/releases');
+    }
 
     res.render('./format/format_detail', {
         format: format,
@@ -89,15 +88,14 @@ exports.format_delete_post = asyncHandler(async (req, res, next) => {
 });
 
 exports.format_update_get = asyncHandler(async (req, res, next) => {
-    const [format, allAlbums] = await Promise.all([
-        Format.findById(req.params.id).exec(),
-        Album.find().sort({ title: 1 }).populate('artist').exec(),
-    ]);
-
-    if (format === null) {
-        const err = new Error("Release not found");
-        err.status = 404;
-        return next(err);
+    let format, allAlbums;
+    try {
+        [format, allAlbums] = await Promise.all([
+            Format.findById(req.params.id).exec(),
+            Album.find().sort({ title: 1 }).populate('artist').exec(),
+        ]);
+    } catch (err) {
+        res.redirect('/category/releases');
     }
 
     res.render('./format/format_form', {

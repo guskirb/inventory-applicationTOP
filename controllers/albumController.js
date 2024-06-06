@@ -15,12 +15,11 @@ exports.album_list = asyncHandler(async (req, res, next) => {
 });
 
 exports.album_detail = asyncHandler(async (req, res, next) => {
-    const album = await Album.findById(req.params.id).populate('artist label genre').exec();
-
-    if (album === null) {
-        const err = new Error('Album not found');
-        err.status = 404;
-        return next(err);
+    let album;
+    try {
+        album = await Album.findById(req.params.id).populate('artist label genre').exec();
+    } catch (err) {
+        res.redirect('/category/albums');
     }
 
     res.render('./album/album_detail', {
@@ -108,17 +107,16 @@ exports.album_delete_post = asyncHandler(async (req, res, next) => {
 });
 
 exports.album_update_get = asyncHandler(async (req, res, next) => {
-    const [album, allArtists, allLabels, allGenres] = await Promise.all([
-        Album.findById(req.params.id).exec(),
-        Artist.find().sort({ last_name: 1 }).exec(),
-        Label.find().sort({ name: 1 }).exec(),
-        Genre.find().sort({ name: 1 }).exec(),
-    ]);
-
-    if (album === null) {
-        const err = new Error("Album not found");
-        err.status = 404;
-        return next(err);
+    let album, allArtists, allLabels, allGenres;
+    try {
+        [album, allArtists, allLabels, allGenres] = await Promise.all([
+            Album.findById(req.params.id).exec(),
+            Artist.find().sort({ last_name: 1 }).exec(),
+            Label.find().sort({ name: 1 }).exec(),
+            Genre.find().sort({ name: 1 }).exec(),
+        ]);
+    } catch (err) {
+        res.redirect('/category/albums');
     }
 
     res.render('./album/album_form', {

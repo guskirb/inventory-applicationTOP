@@ -13,15 +13,14 @@ exports.genre_list = asyncHandler(async (req, res, next) => {
 });
 
 exports.genre_detail = asyncHandler(async (req, res, next) => {
-    const [genre, allAlbumsByGenre] = await Promise.all([
-        Genre.findById(req.params.id).exec(),
-        Album.find({ genre: req.params.id }).populate('artist').exec(),
-    ]);
-
-    if (genre === null) {
-        const err = new Error('Genre not found');
-        err.status = 404;
-        return next(err);
+    let genre, allAlbumsByGenre;
+    try {
+        [genre, allAlbumsByGenre] = await Promise.all([
+            Genre.findById(req.params.id).exec(),
+            Album.find({ genre: req.params.id }).populate('artist').exec(),
+        ]);
+    } catch (err) {
+        res.redirect('/category/genres');
     }
 
     res.render('./genre/genre_detail', {
@@ -78,12 +77,11 @@ exports.genre_delete_post = asyncHandler(async (req, res, next) => {
 });
 
 exports.genre_update_get = asyncHandler(async (req, res, next) => {
-    const genre = await Genre.findById(req.params.id).exec();
-
-    if (genre === null) {
-        const err = new Error("Genre not found");
-        err.status = 404;
-        return next(err);
+    let genre;
+    try {
+        genre = await Genre.findById(req.params.id).exec();
+    } catch (err) {
+        res.redirect('/category/genres');
     }
 
     res.render('./genre/genre_form', {

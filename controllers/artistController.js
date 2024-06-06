@@ -31,24 +31,22 @@ exports.artist_detail = asyncHandler(async (req, res, next) => {
 });
 
 exports.artist_create_get = asyncHandler(async (req, res, next) => {
-    res.render('./artist/artist_form', { title: 'Add Artist', artist: undefined });
+    res.render('./artist/artist_form', {
+        title: 'Add Artist',
+        artist: undefined,
+        errors: undefined,
+    });
 });
 
 exports.artist_create_post = [
-    body('first_name')
+    body('first_name', 'First name must be specified.')
         .trim()
         .isLength({ min: 1 })
-        .escape()
-        .withMessage('First name must be specified.')
-        .isAlphanumeric()
-        .withMessage('First name has non-alphanumeric characters.'),
-    body('last_name')
+        .escape(),
+    body('last_name', 'Last name must be specified.')
         .trim()
         .isLength({ min: 1 })
-        .escape()
-        .withMessage('Last name must be specified.')
-        .isAlphanumeric()
-        .withMessage('Last name has non-alphanumeric characters.'),
+        .escape(),
     body('birth_date', 'Invalid date of birth.')
         .isISO8601()
         .toDate(),
@@ -106,6 +104,7 @@ exports.artist_update_get = asyncHandler(async (req, res, next) => {
     res.render('./artist/artist_form', {
         title: 'Update Artist',
         artist: artist,
+        errors: undefined,
     });
 });
 
@@ -150,7 +149,7 @@ exports.artist_update_post = [
 
         if (!errors.isEmpty()) {
             res.render('./artist/artist_form', {
-                title: 'Add Artist',
+                title: 'Update Artist',
                 artist: artist,
                 errors: errors.array(),
             });

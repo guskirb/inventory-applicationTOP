@@ -31,7 +31,11 @@ exports.genre_detail = asyncHandler(async (req, res, next) => {
 });
 
 exports.genre_create_get = asyncHandler(async (req, res, next) => {
-    res.render('./genre/genre_form', { title: 'Add Genre', genre: undefined });
+    res.render('./genre/genre_form', {
+        title: 'Add Genre',
+        genre: undefined,
+        errors: undefined,
+    });
 });
 
 exports.genre_create_post = [
@@ -86,6 +90,7 @@ exports.genre_update_get = asyncHandler(async (req, res, next) => {
     res.render('./genre/genre_form', {
         title: 'Update Genre',
         genre: genre,
+        errors: undefined,
     });
 });
 
@@ -105,7 +110,7 @@ exports.genre_update_post = [
 
         if (!errors.isEmpty()) {
             res.render('./genre/genre_form', {
-                title: 'Add Genre',
+                title: 'Update Genre',
                 genre: genre,
                 errors: errors.array(),
             });

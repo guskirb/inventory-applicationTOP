@@ -14,8 +14,10 @@ a:hover {
   text-decoration: underline;
 }
 
-h1, h2{
-  margin:0;
+h1,
+h2,
+h3 {
+  margin: 0;
 }
 
 p {
@@ -51,11 +53,11 @@ form {
   gap: 10px;
 }
 
-label{
+label {
   display: flex;
   flex-flow: column;
   width: 100%;
-  gap:5px;
+  gap: 5px;
 }
 
 .coupled {
@@ -69,38 +71,38 @@ label{
   width: 25px;
   background-image: url(../images/edit.svg);
   content: "";
-  background-repeat:no-repeat;
+  background-repeat: no-repeat;
   background-position: center;
-  background-size:cover;
+  background-size: cover;
 }
 
-.deleteButton{
+.deleteButton {
   height: 25px;
   width: 25px;
   background-image: url(../images/delete.svg);
   content: "";
-  background-repeat:no-repeat;
+  background-repeat: no-repeat;
   background-position: center;
-  background-size:cover;
+  background-size: cover;
 }
 
-.arrowButton{
+.arrowButton {
   height: 15px;
   width: 15px;
   background-image: url(../images/arrow.svg);
   content: "";
-  background-repeat:no-repeat;
+  background-repeat: no-repeat;
   background-position: center;
-  background-size:cover;
+  background-size: cover;
 }
 
-.image{
+.image {
   height: 200px;
   width: 200px;
   object-fit: cover;
 }
 
-.imageSmall{
+.imageSmall {
   height: 150px;
   width: 150px;
   object-fit: cover;
@@ -128,7 +130,7 @@ label{
   margin-top: auto;
 }
 
-.listContainer{
+.listContainer {
   display: flex;
   gap: 10px;
 }

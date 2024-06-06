@@ -40,15 +40,16 @@ exports.format_create_get = asyncHandler(async (req, res, next) => {
         title: 'Add Release',
         format: undefined,
         albums: allAlbums,
+        errors: undefined,
     });
 });
 
 exports.format_create_post = [
     body('album', 'Album must be specified').trim().isLength({ min: 1 }).escape(),
-    body('format', 'Format must be specified.').escape(),
-    body('price', 'Price must be specified.').isNumeric().withMessage('Only Decimals allowed'),
-    body('stock', 'Stock amount must be specified.').isNumeric().withMessage('Only Decimals allowed'),
-    body('barcode', 'Barcode must be specified')
+    body('format', 'Format must be specified.').trim().isLength({ min: 1 }).escape(),
+    body('price', 'Price must be specified.').isNumeric(),
+    body('stock', 'Stock amount must be specified.').isNumeric(),
+    body('barcode', 'Barcode must be specified.')
         .trim()
         .isLength({ min: 1 })
         .escape(),
@@ -103,6 +104,7 @@ exports.format_update_get = asyncHandler(async (req, res, next) => {
         title: 'Update Release',
         format: format,
         albums: allAlbums,
+        errors: undefined,
     });
 });
 
@@ -131,13 +133,13 @@ exports.format_update_post = [
             const allAlbums = await Album.find().sort({ title: 1 }).populate('artist').exec();
 
             res.render('./format/format_form', {
-                title: 'Add Release',
+                title: 'Update Release',
                 format: format,
                 albums: allAlbums,
                 errors: errors.array(),
             });
         } else {
-            const updatedFormat  = await Format.findByIdAndUpdate(req.params.id, format, {});
+            const updatedFormat = await Format.findByIdAndUpdate(req.params.id, format, {});
             res.redirect(updatedFormat.url);
         }
     }),

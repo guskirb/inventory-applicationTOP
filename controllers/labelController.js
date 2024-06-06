@@ -31,18 +31,17 @@ exports.label_detail = asyncHandler(async (req, res, next) => {
 });
 
 exports.label_create_get = asyncHandler(async (req, res, next) => {
-    res.render('./label/label_form', { title: 'Add Label', label: undefined });
+    res.render('./label/label_form', {
+        title: 'Add Label',
+        label: undefined,
+        errors: undefined
+    });
 });
 
 exports.label_create_post = [
-    body('name', 'Label name must contain at least 1 character.')
+    body('name', 'Name must be specified.')
         .trim()
         .isLength({ min: 1 })
-        .escape(),
-    body('founded', "Founded must not be empty")
-        .trim()
-        .isLength({ min: 4 })
-        .isNumeric()
         .escape(),
     asyncHandler(async (req, res, next) => {
         const errors = validationResult(req);
@@ -88,6 +87,7 @@ exports.label_update_get = asyncHandler(async (req, res, next) => {
     res.render('./label/label_form', {
         title: 'Update Label',
         label: label,
+        errors: undefined,
     });
 });
 
@@ -115,7 +115,7 @@ exports.label_update_post = [
         if (!errors.isEmpty()) {
             console.log(label)
             res.render('./label/label_form', {
-                title: 'Add Label',
+                title: 'Update Label',
                 label: label,
                 errors: errors.array(),
             });

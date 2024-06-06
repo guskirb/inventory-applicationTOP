@@ -43,6 +43,9 @@ exports.label_create_post = [
         .trim()
         .isLength({ min: 1 })
         .escape(),
+    body('founded')
+        .trim()
+        .escape(),
     asyncHandler(async (req, res, next) => {
         const errors = validationResult(req);
 
@@ -96,10 +99,8 @@ exports.label_update_post = [
         .trim()
         .isLength({ min: 1 })
         .escape(),
-    body('founded', "Founded must not be empty")
+    body('founded')
         .trim()
-        .isLength({ min: 4 })
-        .isNumeric()
         .escape(),
     asyncHandler(async (req, res, next) => {
         const errors = validationResult(req);

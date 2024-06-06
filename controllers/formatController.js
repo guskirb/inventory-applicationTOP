@@ -110,10 +110,10 @@ exports.format_update_get = asyncHandler(async (req, res, next) => {
 
 exports.format_update_post = [
     body('album', 'Album must be specified').trim().isLength({ min: 1 }).escape(),
-    body('format', 'Format must be specified.').escape(),
-    body('price', 'Price must be specified.').isNumeric().withMessage('Only Decimals allowed'),
-    body('stock', 'Stock amount must be specified.').isNumeric().withMessage('Only Decimals allowed'),
-    body('barcode', 'Barcode must be specified')
+    body('format', 'Format must be specified.').trim().isLength({ min: 1 }).escape(),
+    body('price', 'Price must be specified.').isNumeric(),
+    body('stock', 'Stock amount must be specified.').isNumeric(),
+    body('barcode', 'Barcode must be specified.')
         .trim()
         .isLength({ min: 1 })
         .escape(),

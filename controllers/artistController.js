@@ -43,9 +43,8 @@ exports.artist_create_post = [
         .trim()
         .isLength({ min: 1 })
         .escape(),
-    body('last_name', 'Last name must be specified.')
+    body('last_name')
         .trim()
-        .isLength({ min: 1 })
         .escape(),
     body('birth_date', 'Invalid date of birth.')
         .isISO8601()
@@ -109,20 +108,13 @@ exports.artist_update_get = asyncHandler(async (req, res, next) => {
 });
 
 exports.artist_update_post = [
-    body('first_name')
+    body('first_name', 'First name must be specified.')
         .trim()
         .isLength({ min: 1 })
-        .escape()
-        .withMessage('First name must be specified.')
-        .isAlphanumeric()
-        .withMessage('First name has non-alphanumeric characters.'),
+        .escape(),
     body('last_name')
         .trim()
-        .isLength({ min: 1 })
-        .escape()
-        .withMessage('Last name must be specified.')
-        .isAlphanumeric()
-        .withMessage('Last name has non-alphanumeric characters.'),
+        .escape(),
     body('birth_date', 'Invalid date of birth.')
         .isISO8601()
         .toDate(),

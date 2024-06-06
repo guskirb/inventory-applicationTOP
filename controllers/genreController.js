@@ -43,7 +43,6 @@ exports.genre_create_post = [
         .trim()
         .isLength({ min: 1 })
         .escape(),
-
     asyncHandler(async (req, res, next) => {
         const errors = validationResult(req);
 
@@ -99,7 +98,6 @@ exports.genre_update_post = [
         .trim()
         .isLength({ min: 1 })
         .escape(),
-
     asyncHandler(async (req, res, next) => {
         const errors = validationResult(req);
 

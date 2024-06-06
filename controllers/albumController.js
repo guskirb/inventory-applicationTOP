@@ -136,13 +136,21 @@ exports.album_update_post = [
         .trim()
         .isLength({ min: 1 })
         .escape(),
-    body("artist", "Artist must not be empty.")
+    body("artist", "Artist must be selected.")
         .trim()
         .isLength({ min: 1 })
         .escape(),
     body('release_date', 'Invalid release date.')
         .isISO8601()
         .toDate(),
+    body('label', 'Label must be selected.')
+        .trim()
+        .isLength({ min: 1 })
+        .escape(),
+    body('genre', 'Genre must be selected.')
+        .trim()
+        .isLength({ min: 1 })
+        .escape(),
     asyncHandler(async (req, res, next) => {
         const errors = validationResult(req);
 

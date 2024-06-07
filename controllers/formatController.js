@@ -95,11 +95,11 @@ exports.format_create_post = [
 exports.format_delete_get = asyncHandler(async (req, res, next) => {
     let format;
     try {
-        format = await Format.findById(req.params.id).exec();
+        format = await Format.findById(req.params.id).populate('album').exec();
     } catch (err) {
         res.redirect('/category/releases');
     }
-
+    
     res.render('./format/format_delete', {
         format: format,
     });

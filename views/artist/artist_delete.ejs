@@ -11,6 +11,7 @@
 <body>
     <%- include('../partials/nav.ejs') %>
         <div class="mainContainer">
+            <h1><%= 'Delete ' + artist.name %></h1>
             <% if (artist_albums?.length){ %>
                 <h2>Delete the following albums: </h2>
                 <div class="listContainer">

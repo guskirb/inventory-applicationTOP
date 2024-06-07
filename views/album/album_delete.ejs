@@ -3,7 +3,7 @@
 
 <head>
     <title>
-        <%= 'Delete ' + label.name %>
+        <%= 'Delete ' + album.title %>
     </title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
@@ -11,14 +11,14 @@
 <body>
     <%- include('../partials/nav.ejs') %>
         <div class="mainContainer">
-            <h1><%= 'Delete ' + label.name %></h1>
-            <% if (label_albums?.length){ %>
-                <h2>Delete the following albums: </h2>
+            <h1><%= 'Delete ' + album.title %></h1>
+            <% if (album_formats?.length){ %>
+                <h2>Delete the following releases: </h2>
                 <div class="listContainer">
-                    <% label_albums.forEach((album)=> { %>
+                    <% album_formats.forEach((format)=> { %>
                         <div>
-                            <a href=<%- album.url %>>
-                                <img src=<%- album.image==="" || undefined ? 'https://iili.io/HlHy9Yx.png' : album.image
+                            <a href=<%- format.url %>>
+                                <img src=<%- format.image==="" || undefined ? 'https://iili.io/HlHy9Yx.png' : format.image
                                     %>
                                 alt="" class="imageSmall"></a>
                             <div class="listLower">
@@ -32,7 +32,7 @@
                                         <%= album.release_date_formatted %>
                                     </p>
                                 </div>
-                                <a href=<%- album.url + '/delete' %>>
+                                <a href=<%- format.url + '/delete' %>>
                                     <div class="deleteButton"></div>
                                 </a>
                             </div>

@@ -3,7 +3,7 @@
 
 <head>
     <title>
-        <%= 'Delete ' + format.album.name %>
+        <%= 'Delete ' + format.album.title %>
     </title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
@@ -11,6 +11,7 @@
 <body>
     <%- include('../partials/nav.ejs') %>
         <div class="mainContainer">
+            <h1><%= 'Delete ' + format.album.title + ' ' + format.format + ' release' %></h1>
             <div class="listContainer">
                 <h2>Are you sure you want to delete?</h2>
                 <form method="post">

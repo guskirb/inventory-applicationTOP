@@ -20,12 +20,12 @@ exports.album_detail = asyncHandler(async (req, res, next) => {
     try {
         [album, allFormatsByArtist] = await Promise.all([
             Album.findById(req.params.id).populate('artist label genre').exec(),
-            Format.find({album: req.params.id}).exec(),
+            Format.find({ album: req.params.id }).exec(),
         ]);
     } catch (err) {
         res.redirect('/category/albums');
     }
-    
+
     res.render('./album/album_detail', {
         album: album,
         album_formats: allFormatsByArtist,
@@ -104,11 +104,38 @@ exports.album_create_post = [
 ];
 
 exports.album_delete_get = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED");
+    let album, allFormatsByArtist;
+    try {
+        [album, allFormatsByArtist] = await Promise.all([
+            Album.findById(req.params.id).exec(),
+            Format.find({ album: req.params.id }).exec(),
+        ]);
+    } catch (err) {
+        res.redirect('/category/albums');
+    }
+    console.log(allFormatsByArtist)
+    res.render('./album/album_delete', {
+        album: album,
+        album_formats: allFormatsByArtist,
+    });
 });
 
 exports.album_delete_post = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED");
+    const [album, allFormatsByArtist] = await Promise.all([
+        Album.findById(req.params.id).exec(),
+        Format.find({ album: req.params.id }).exec(),
+    ]);
+
+    if (allFormatsByArtist.length > 0) {
+        res.render('./album/album_delete', {
+            album: album,
+            album_formats: allFormatsByArtist,
+        });
+        return;
+    } else {
+        await Album.findByIdAndDelete(req.params.id);
+        res.redirect('/category/albums');
+    }
 });
 
 exports.album_update_get = asyncHandler(async (req, res, next) => {

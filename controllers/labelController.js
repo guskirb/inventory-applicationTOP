@@ -85,7 +85,21 @@ exports.label_delete_get = asyncHandler(async (req, res, next) => {
 });
 
 exports.label_delete_post = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED");
+    const [label, allAlbumsByLabel] = await Promise.all([
+        Label.findById(req.params.id).exec(),
+        Album.find({ label: req.params.id }).exec(),
+    ]);
+
+    if (allAlbumsByLabel.length > 0) {
+        res.render('./label/label_delete', {
+            label: label,
+            label_albums: allAlbumsByLabel,
+        });
+        return;
+    } else {
+        await Label.findByIdAndDelete(req.params.id);
+        res.redirect('/category/labels');
+    }
 });
 
 exports.label_update_get = asyncHandler(async (req, res, next) => {

@@ -9,7 +9,7 @@ const ArtistSchema = new Schema({
     birth_date: { type: Date, required: true },
     death_date: { type: Date },
     country: { type: String, maxLength: 100 },
-    image: { type: String, maxLength: 100 },
+    image: { type: String },
 });
 
 ArtistSchema.virtual('name').get(function () {

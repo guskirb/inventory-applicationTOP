@@ -9,7 +9,7 @@ const AlbumSchema = new Schema({
     release_date: { type: Date, required: true },
     label: { type: Schema.Types.ObjectId, ref: 'Label', required: true },
     genre: { type: Schema.Types.ObjectId, ref: "Genre" },
-    image: { type: String, maxLength: 100 },
+    image: { type: String },
 });
 
 AlbumSchema.virtual('release_date_formatted').get(function () {
@@ -18,7 +18,7 @@ AlbumSchema.virtual('release_date_formatted').get(function () {
 });
 
 AlbumSchema.virtual('release_dd_mm_yyyy').get(function () {
-    return  DateTime.fromJSDate(this.release_date).toISODate();
+    return DateTime.fromJSDate(this.release_date).toISODate();
 });
 
 AlbumSchema.virtual('url').get(function () {

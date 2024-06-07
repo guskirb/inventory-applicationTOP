@@ -12,14 +12,14 @@
     <%- include('../partials/nav.ejs') %>
         <div class="mainContainer">
             <div class="flex">
-                <img src=<%- format.album.image==="" || undefined
-                    ? 'https://iili.io/HlHy9Yx.png' :
-                    format.album.image %> alt="" class="image">
+                <img src=<%- format.image===undefined || format.image==='' ? 'https://iili.io/HlHy9Yx.png' :
+                    format.image %>
+                alt="" class="image">
                 <div>
                     <div class="coupled">
                         <h1>
                             <a href=<%- format.album.artist.url %>><%= format.album.artist.name %></a>
-                            - <%= format.album.title %>
+                            - <a href=<%- format.album.url %>><%= format.album.title %></a>
                         </h1>
                         <a href=<%- format.url + '/update' %>>
                             <div class="editButton"></div>

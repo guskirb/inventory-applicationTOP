@@ -46,7 +46,7 @@
                 <% album_formats.forEach((format)=> { %>
                     <div>
                         <a href=<%- format.url %>>
-                            <img src=<%- album.image==="" || undefined ? 'https://iili.io/HlHy9Yx.png' : album.image %>
+                            <img src=<%- format.image===undefined || format.image === '' ? 'https://iili.io/HlHy9Yx.png' : format.image %>
                             alt="" class="imageSmall">
                             <h2>
                                 <%= album.title %>

@@ -73,6 +73,7 @@ exports.format_create_post = [
             price: req.body.price,
             stock: req.body.stock,
             barcode: req.body.barcode,
+            image: req.body.image,
         });
 
         if (!errors.isEmpty()) {
@@ -146,6 +147,7 @@ exports.format_update_post = [
             price: req.body.price,
             stock: req.body.stock,
             barcode: req.body.barcode,
+            image: req.body.image,
             _id: req.params.id,
         });
 

@@ -18,10 +18,9 @@
                 <% formats.forEach((format)=> { %>
                     <div>
                         <a href=<%- format.url %>>
-                            <img src=<%- format.album.image==="" || undefined ? 'https://iili.io/HlHy9Yx.png' :
-                                format.album.image %>
-                            alt=""
-                            class="imageSmall">
+                            <img src=<%- format.image===undefined || format.image==='' ? 'https://iili.io/HlHy9Yx.png' :
+                                format.image %>
+                            alt="" class="imageSmall">
                             <h2>
                                 <%= format.album.title %>
                             </h2>

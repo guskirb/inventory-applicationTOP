@@ -12,6 +12,7 @@ const FormatSchema = new Schema({
     price: { type: Number, required: true },
     stock: { type: Number, required: true },
     barcode: { type: String, required: true },
+    image: { type: String, maxLength: 100 },
 });
 
 FormatSchema.virtual('price_formatted').get(function () {

@@ -52,6 +52,9 @@
                 <label for="barcode">Barcode:
                     <input type="text" name="barcode" id="barcode" value='<%-undefined===format ? '' : format.barcode %>'>
                 </label>
+                <label for="image">Image URL:
+                    <input type="text" name="image" id="image" value='<%= undefined===format ? '' : format.image %>'>
+                </label>
                 <button type="submit">Submit</button>
             </form>
             <% if(errors){ %>

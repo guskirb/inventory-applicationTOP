@@ -1,5 +1,6 @@
 const Label = require('../models/label');
 const Album = require('../models/album');
+const Format = require('../models/format');
 const { body, validationResult } = require('express-validator');
 const asyncHandler = require('express-async-handler');
 
@@ -13,12 +14,15 @@ exports.label_list = asyncHandler(async (req, res, next) => {
 });
 
 exports.label_detail = asyncHandler(async (req, res, next) => {
-    let label, allAlbumsByLabel;
+    let label, allAlbumsByLabel, allFormatsByLabel;
     try {
         [label, allAlbumsByLabel] = await Promise.all([
             Label.findById(req.params.id).exec(),
             Album.find({ label: req.params.id }).populate('artist').exec(),
         ]);
+
+        allFormatsByLabel = await Format.find({ album: allAlbumsByLabel }).populate('album').exec();
+
     } catch (err) {
         res.redirect('/category/labels');
     }
@@ -26,6 +30,7 @@ exports.label_detail = asyncHandler(async (req, res, next) => {
     res.render('./label/label_detail', {
         label: label,
         label_albums: allAlbumsByLabel,
+        label_formats: allFormatsByLabel,
     });
 });
 

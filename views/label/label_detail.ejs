@@ -22,7 +22,7 @@
                     <div class="deleteButton"></div>
                 </a>
             </div>
-            <h2>Albums</h2>
+            <h2><%= label_albums.length %> Albums</h2>
             <div class="listContainer">
                 <% label_albums.forEach((album)=> { %>
                     <div>
@@ -43,6 +43,29 @@
                             <%= album.release_date_formatted %>
                         </p>
                     </div>
+                    <% }) %>
+            </div>
+            <h2><%= label_formats.length %> Releases</h2>
+            <div class="listContainer">
+                <% label_formats.forEach((format)=> { %>
+                    <div>
+                        <a href=<%- format.url %>>
+                            <img src=<%- format.image===undefined || format.image === '' ? 'https://iili.io/HlHy9Yx.png' : format.image %>
+                            alt="" class="imageSmall">
+                            <h2>
+                                <%= format.album.title %>
+                            </h2>
+                        
+                        <p> <%= format.format %> </p>
+                        <div class="listLower">
+                            <p>
+                                $<%= format.price_formatted %>
+                            </p>
+                            <p>
+                                <%= format.stock %> available
+                            </p>
+                        </div>
+                    </div></a>
                     <% }) %>
             </div>
         </div>

@@ -68,7 +68,20 @@ exports.label_create_post = [
 ];
 
 exports.label_delete_get = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED");
+    let label, allAlbumsByLabel;
+    try {
+        [label, allAlbumsByLabel] = await Promise.all([
+            Label.findById(req.params.id).exec(),
+            Album.find({ label: req.params.id }).exec(),
+        ]);
+    } catch (err) {
+        res.redirect('/category/labels');
+    }
+
+    res.render('./label/label_delete', {
+        label: label,
+        label_albums: allAlbumsByLabel,
+    });
 });
 
 exports.label_delete_post = asyncHandler(async (req, res, next) => {

@@ -1,5 +1,6 @@
 const Artist = require('../models/artist');
 const Album = require('../models/album');
+const Format = require('../models/format');
 const asyncHandler = require('express-async-handler');
 const { body, validationResult } = require('express-validator');
 
@@ -13,12 +14,15 @@ exports.artist_list = asyncHandler(async (req, res, next) => {
 });
 
 exports.artist_detail = asyncHandler(async (req, res, next) => {
-    let artist, allAlbumsByArtist;
+    let artist, allAlbumsByArtist, allFormatsByArtist;
     try {
-        [artist, allAlbumsByArtist] = await Promise.all([
+        [artist, allAlbumsByArtist,] = await Promise.all([
             Artist.findById(req.params.id).exec(),
             Album.find({ artist: req.params.id }, 'title release_date label image').populate('label').exec(),
         ]);
+
+        allFormatsByArtist = await Format.find({ album: allAlbumsByArtist }).populate('album').exec();
+
     } catch (err) {
         res.redirect('/category/artists');
     }
@@ -26,6 +30,7 @@ exports.artist_detail = asyncHandler(async (req, res, next) => {
     res.render('./artist/artist_detail', {
         artist: artist,
         artist_albums: allAlbumsByArtist,
+        artist_formats: allFormatsByArtist,
     });
 });
 

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= 'Delete ' + format.album.name %>
+    </title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <%- include('../partials/nav.ejs') %>
+        <div class="mainContainer">
+            <div class="listContainer">
+                <h2>Are you sure you want to delete?</h2>
+                <form method="post">
+                    <button type="submit">Delete</button>
+                </form>
+            </div>
+        </div>
+</body>

@@ -7,7 +7,7 @@ const FormatSchema = new Schema({
     format: {
         type: String,
         required: true,
-        enum: ['CD', 'Vinyl', 'Cassette Tape', 'Digital'],
+        enum: ['CD', 'Vinyl', 'Cassette', 'Digital'],
     },
     price: { type: Number, required: true },
     stock: { type: Number, required: true },

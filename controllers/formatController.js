@@ -54,7 +54,7 @@ exports.format_create_post = [
         .escape(),
     asyncHandler(async (req, res, next) => {
         const errors = validationResult(req);
-
+        
         const format = new Format({
             album: req.body.album,
             format: req.body.format,
@@ -80,11 +80,21 @@ exports.format_create_post = [
 ];
 
 exports.format_delete_get = asyncHandler(async (req, res, next) => {
-    res.render('format_delete');
+    let format;
+    try {
+        format = await Format.findById(req.params.id).exec();
+    } catch (err) {
+        res.redirect('/category/releases');
+    }
+
+    res.render('./format/format_delete', {
+        format: format,
+    });
 });
 
 exports.format_delete_post = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED");
+    await Format.findByIdAndDelete(req.params.id);
+    res.redirect('/category/releases');
 });
 
 exports.format_update_get = asyncHandler(async (req, res, next) => {

@@ -94,7 +94,6 @@ exports.artist_delete_get = asyncHandler(async (req, res, next) => {
     }
 
     res.render('./artist/artist_delete', {
-        title: 'Delete Artist',
         artist: artist,
         artist_albums: allAlbumsByArtist,
     });
@@ -108,7 +107,6 @@ exports.artist_delete_post = asyncHandler(async (req, res, next) => {
 
     if (allAlbumsByArtist.length > 0) {
         res.render('./artist/artist_delete', {
-            title: 'Delete Artist',
             artist: artist,
             artist_albums: allAlbumsByArtist,
         });

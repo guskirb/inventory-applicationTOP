@@ -31,7 +31,7 @@
                 <label for="format">Format:
                     <select for="format" id="format" name="format">
                         <option value="">Select a format</option>
-                        <% ['CD', 'Vinyl', 'Cassette Tape', 'Digital'].forEach((item) => { %>
+                        <% ['CD', 'Vinyl', 'Cassette', 'Digital'].forEach((item) => { %>
                             <% if( format?.format !== undefined && (format.format==item)) { %>
                                 <option selected value=<%= item %>> <%= item %></option> 
                             <% } else { %>

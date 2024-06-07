@@ -3,7 +3,7 @@
 
 <head>
     <title>
-        <%= album.artist.name %> - <%= album.title %>
+        <%= album.artist.name %> - <%= album.title %> (<%= album.release_date_formatted %>)
     </title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
@@ -41,7 +41,7 @@
                     </h2>
                 </div>
             </div>
-            <h2>Formats</h2>
+            <h2><%= album_formats.length %> Formats</h2>
             <div class="listContainer">
                 <% album_formats.forEach((format)=> { %>
                     <div>

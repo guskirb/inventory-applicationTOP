@@ -132,7 +132,12 @@ label {
 
 .listContainer {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
+}
+
+.listContainer>div{
+  width: 150px;
 }
 
 .listLower {

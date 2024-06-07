@@ -1,5 +1,6 @@
 const Genre = require('../models/genre');
 const Album = require('../models/album');
+const Format = require('../models/format');
 const asyncHandler = require('express-async-handler');
 const { body, validationResult } = require('express-validator');
 
@@ -13,19 +14,23 @@ exports.genre_list = asyncHandler(async (req, res, next) => {
 });
 
 exports.genre_detail = asyncHandler(async (req, res, next) => {
-    let genre, allAlbumsByGenre;
+    let genre, allAlbumsByGenre, allFormatsByGenre;
     try {
         [genre, allAlbumsByGenre] = await Promise.all([
             Genre.findById(req.params.id).exec(),
             Album.find({ genre: req.params.id }).populate('artist').exec(),
         ]);
+        
+        allFormatsByGenre = await Format.find({album: allAlbumsByGenre}).populate('album').sort({ stock: 1 }).exec();
+
     } catch (err) {
         res.redirect('/category/genres');
     }
-
+    console.log(allFormatsByGenre)
     res.render('./genre/genre_detail', {
         genre: genre,
         albums: allAlbumsByGenre,
+        genre_formats: allFormatsByGenre,
     });
 });
 

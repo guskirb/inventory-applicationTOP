@@ -5,7 +5,7 @@ const asyncHandler = require('express-async-handler');
 const { body, validationResult } = require('express-validator');
 
 exports.artist_list = asyncHandler(async (req, res, next) => {
-    const allArtists = await Artist.find().sort({ last_name: 1 }).exec();
+    const allArtists = await Artist.find().sort({ first_name: 1 }).exec();
 
     res.render('./artist/artist_list', {
         title: 'All Artists',
@@ -21,7 +21,7 @@ exports.artist_detail = asyncHandler(async (req, res, next) => {
             Album.find({ artist: req.params.id }, 'title release_date label image').populate('label').exec(),
         ]);
 
-        allFormatsByArtist = await Format.find({ album: allAlbumsByArtist }).populate('album').exec();
+        allFormatsByArtist = await Format.find({ album: allAlbumsByArtist }).populate('album').sort({ stock: 1 }).exec();
 
     } catch (err) {
         res.redirect('/category/artists');

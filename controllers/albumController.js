@@ -20,7 +20,7 @@ exports.album_detail = asyncHandler(async (req, res, next) => {
     try {
         [album, allFormatsByArtist] = await Promise.all([
             Album.findById(req.params.id).populate('artist label genre').exec(),
-            Format.find({ album: req.params.id }).exec(),
+            Format.find({ album: req.params.id }).sort({ stock: 1 }).exec(),
         ]);
     } catch (err) {
         res.redirect('/category/albums');
@@ -34,7 +34,7 @@ exports.album_detail = asyncHandler(async (req, res, next) => {
 
 exports.album_create_get = asyncHandler(async (req, res, next) => {
     const [allArtists, allLabels, allGenres] = await Promise.all([
-        Artist.find().sort({ last_name: 1 }).exec(),
+        Artist.find().sort({ first_name: 1 }).exec(),
         Label.find().sort({ name: 1 }).exec(),
         Genre.find().sort({ name: 1 }).exec(),
     ]);
@@ -143,7 +143,7 @@ exports.album_update_get = asyncHandler(async (req, res, next) => {
     try {
         [album, allArtists, allLabels, allGenres] = await Promise.all([
             Album.findById(req.params.id).exec(),
-            Artist.find().sort({ last_name: 1 }).exec(),
+            Artist.find().sort({ first_name: 1 }).exec(),
             Label.find().sort({ name: 1 }).exec(),
             Genre.find().sort({ name: 1 }).exec(),
         ]);

@@ -2,16 +2,17 @@ const Format = require('../models/format');
 const Album = require('../models/album');
 const asyncHandler = require('express-async-handler');
 const { body, validationResult } = require('express-validator');
-const { format } = require('morgan');
 
 exports.format_list = asyncHandler(async (req, res, next) => {
     const allFormats = await Format.find().populate({
         path: 'album',
+        select: 'title',
+        options: { sort: { "title": 1 } },
         populate: {
             path: 'artist',
-            model: 'Artist'
+            model: 'Artist',
         },
-    }).sort().exec();
+    }).sort({ stock: 1 }).exec();
 
     res.render('./format/format_list', {
         title: 'All Releases',
@@ -99,7 +100,7 @@ exports.format_delete_get = asyncHandler(async (req, res, next) => {
     } catch (err) {
         res.redirect('/category/releases');
     }
-    
+
     res.render('./format/format_delete', {
         format: format,
     });

@@ -44,6 +44,7 @@ p {
 
 .mainContainer {
   padding: 20px;
+  max-width: 85vw;
 }
 
 form {

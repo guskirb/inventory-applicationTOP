@@ -21,7 +21,7 @@ exports.label_detail = asyncHandler(async (req, res, next) => {
             Album.find({ label: req.params.id }).populate('artist').exec(),
         ]);
 
-        allFormatsByLabel = await Format.find({ album: allAlbumsByLabel }).populate('album').exec();
+        allFormatsByLabel = await Format.find({ album: allAlbumsByLabel }).populate('album').sort({ stock: 1 }).exec();
 
     } catch (err) {
         res.redirect('/category/labels');

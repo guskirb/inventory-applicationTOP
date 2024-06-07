@@ -18,8 +18,9 @@
                 <% artists.forEach((artist)=> { %>
                     <div>
                         <a href=<%- artist.url %>>
-                            <img src=<%- artist.image==="" || undefined ? 'https://iili.io/HlHy9Yx.png' : artist.image
-                                %> alt="" class="imageSmall">
+                            <img src=<%- artist.image==="" || undefined
+                                ? 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
+                                : artist.image %> alt="" class="imageSmall">
                             <h2>
                                 <%= artist.name %>
                             </h2>

@@ -31,13 +31,19 @@
                                 <%= format.album.artist.name %>
                             </p>
                         </a>
-                        <p>
-                            <%= format.album.release_date_formatted %>
-                        </p>
                         <a href=<%- format.url %>>
                             <p>
                                 <%= format.format %>
                             </p>
+
+                            <div class="listLower">
+                                <p>
+                                    $<%= format.price_formatted %>
+                                </p>
+                                <p>
+                                    <%= format.stock %> available
+                                </p>
+                            </div>
                         </a>
                     </div>
                     <% }) %>

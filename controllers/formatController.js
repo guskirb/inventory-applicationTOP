@@ -22,7 +22,19 @@ exports.format_list = asyncHandler(async (req, res, next) => {
 exports.format_detail = asyncHandler(async (req, res, next) => {
     let format;
     try {
-        format = await Format.findById(req.params.id).populate('album').exec();
+        format = await Format.findById(req.params.id).populate({
+            path: 'album',
+            populate: [{
+                path: 'artist',
+                model: 'Artist'
+            }, {
+                path: 'label',
+                model: 'Label'
+            }, {
+                path: 'genre',
+                model: 'Genre'
+            }],
+        }).exec();
     } catch (err) {
         res.redirect('/category/releases');
     }
@@ -54,7 +66,7 @@ exports.format_create_post = [
         .escape(),
     asyncHandler(async (req, res, next) => {
         const errors = validationResult(req);
-        
+
         const format = new Format({
             album: req.body.album,
             format: req.body.format,

@@ -11,16 +11,42 @@
 <body>
     <%- include('../partials/nav.ejs') %>
         <div class="mainContainer">
-            <div class="coupled">
-                <h1>
-                    <%= format.album.title %>
-                </h1>
-                <a href=<%- format.url + '/update' %>>
-                    <div class="editButton"></div>
-                </a>
-                <a href=<%- format.url + '/delete' %>>
-                    <div class="deleteButton"></div>
-                </a>
+            <div class="flex">
+                <img src=<%- format.album.image==="" || undefined
+                    ? 'https://iili.io/HlHy9Yx.png' :
+                    format.album.image %> alt="" class="image">
+                <div>
+                    <div class="coupled">
+                        <h1>
+                            <a href=<%- format.album.artist.url %>><%= format.album.artist.name %></a>
+                            - <%= format.album.title %>
+                        </h1>
+                        <a href=<%- format.url + '/update' %>>
+                            <div class="editButton"></div>
+                        </a>
+                        <a href=<%- format.url + '/delete' %>>
+                            <div class="deleteButton"></div>
+                        </a>
+                    </div>
+                    <h2>
+                        Label:
+                        <a href=<%- format.album.label.url %>><%= format.album.label.name %></a>
+                    </h2>
+                    <h2>
+                        Released: <%= format.album.release_date_formatted %>
+                    </h2>
+                    <h2>
+                        Genre:
+                        <a href=<%- format.album.genre.url %>><%= format.album.genre.name %></a>
+                    </h2>
+                    <h2>
+                        Price:
+                        $<%= format.price_formatted %>
+                    </h2>
+                    <h2>
+                        <%= format.stock %> In Stock
+                    </h2>
+                </div>
             </div>
         </div>
 </body>

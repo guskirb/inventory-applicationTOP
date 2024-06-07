@@ -41,5 +41,28 @@
                     </h2>
                 </div>
             </div>
+            <h2>Formats</h2>
+            <div class="listContainer">
+                <% album_formats.forEach((format)=> { %>
+                    <div>
+                        <a href=<%- format.url %>>
+                            <img src=<%- album.image==="" || undefined ? 'https://iili.io/HlHy9Yx.png' : album.image %>
+                            alt="" class="imageSmall">
+                            <h2>
+                                <%= album.title %>
+                            </h2>
+                        
+                        <p> <%= format.format %> </p>
+                        <div class="listLower">
+                            <p>
+                                $<%= format.price_formatted %>
+                            </p>
+                            <p>
+                                <%= format.stock %> available
+                            </p>
+                        </div>
+                    </div></a>
+                    <% }) %>
+            </div>
         </div>
 </body>

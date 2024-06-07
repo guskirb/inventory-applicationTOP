@@ -21,7 +21,7 @@ exports.album_detail = asyncHandler(async (req, res, next) => {
     } catch (err) {
         res.redirect('/category/albums');
     }
-
+    
     res.render('./album/album_detail', {
         album: album,
     });

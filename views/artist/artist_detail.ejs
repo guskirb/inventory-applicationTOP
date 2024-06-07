@@ -12,7 +12,7 @@
     <%- include('../partials/nav.ejs') %>
         <div class="mainContainer">
             <div class="flex">
-                <img src=<%- artist.image===undefined
+                <img src=<%- artist.image===undefined || artist.image===''
                     ? 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png' :
                     artist.image %> alt="" class="image">
                 <div>

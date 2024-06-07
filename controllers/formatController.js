@@ -80,7 +80,7 @@ exports.format_create_post = [
 ];
 
 exports.format_delete_get = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED");
+    res.render('format_delete');
 });
 
 exports.format_delete_post = asyncHandler(async (req, res, next) => {

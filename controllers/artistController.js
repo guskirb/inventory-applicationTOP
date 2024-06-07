@@ -87,16 +87,36 @@ exports.artist_delete_get = asyncHandler(async (req, res, next) => {
     try {
         [artist, allAlbumsByArtist] = await Promise.all([
             Artist.findById(req.params.id).exec(),
-            Album.find({ artist: req.params.id }).exec(),
+            Album.find({ artist: req.params.id }, 'title release_date image').exec(),
         ]);
     } catch (err) {
         res.redirect('/category/artists');
     }
 
+    res.render('./artist/artist_delete', {
+        title: 'Delete Artist',
+        artist: artist,
+        artist_albums: allAlbumsByArtist,
+    });
 });
 
 exports.artist_delete_post = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED");
+    const [artist, allAlbumsByArtist] = await Promise.all([
+        Artist.findById(req.params.id).exec(),
+        Album.find({ artist: req.params.id }, 'title release_date image').exec(),
+    ]);
+
+    if (allAlbumsByArtist.length > 0) {
+        res.render('./artist/artist_delete', {
+            title: 'Delete Artist',
+            artist: artist,
+            artist_albums: allAlbumsByArtist,
+        });
+        return;
+    } else {
+        await Artist.findByIdAndDelete(req.params.id);
+        res.redirect('/category/artists');
+    }
 });
 
 exports.artist_update_get = asyncHandler(async (req, res, next) => {

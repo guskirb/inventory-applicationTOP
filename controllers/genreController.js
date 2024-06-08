@@ -20,8 +20,8 @@ exports.genre_detail = asyncHandler(async (req, res, next) => {
             Genre.findById(req.params.id).exec(),
             Album.find({ genre: req.params.id }).populate('artist').exec(),
         ]);
-        
-        allFormatsByGenre = await Format.find({album: allAlbumsByGenre}).populate('album').sort({ stock: 1 }).exec();
+
+        allFormatsByGenre = await Format.find({ album: allAlbumsByGenre }).populate('album').sort({ stock: 1 }).exec();
 
     } catch (err) {
         res.redirect('/category/genres');
@@ -87,6 +87,7 @@ exports.genre_delete_get = asyncHandler(async (req, res, next) => {
     res.render('./genre/genre_delete', {
         genre: genre,
         genre_albums: allAlbumsByGenre,
+        error: undefined,
     });
 });
 
@@ -102,9 +103,15 @@ exports.genre_delete_post = asyncHandler(async (req, res, next) => {
             genre_albums: allAlbumsByGenre,
         });
         return;
-    } else {
+    } else if (req.body.password === 'password') {
         await Genre.findByIdAndDelete(req.params.id);
         res.redirect('/category/genres');
+    } else {
+        res.render('./genre/genre_delete', {
+            genre: genre,
+            genre_albums: allAlbumsByGenre,
+            error: 'Password incorrect',
+        });
     }
 });
 

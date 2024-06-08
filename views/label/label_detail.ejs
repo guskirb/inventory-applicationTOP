@@ -11,18 +11,25 @@
 <body>
     <%- include('../partials/nav.ejs') %>
         <div class="mainContainer">
-            <div class="coupled">
-                <h1>
-                    <%= label.name %>
-                </h1>
-                <a href=<%- label.url + '/update' %>>
-                    <div class="editButton"></div>
-                </a>
-                <a href=<%- label.url + '/delete' %>>
-                    <div class="deleteButton"></div>
-                </a>
+            <div>
+                <div class="coupled">
+                    <h1>
+                        <%= label.name %>
+                    </h1>
+                    <a href=<%- label.url + '/update' %>>
+                        <div class="editButton"></div>
+                    </a>
+                    <a href=<%- label.url + '/delete' %>>
+                        <div class="deleteButton"></div>
+                    </a>
+                </div>
+                <h2>
+                    Founded: <%= label.founded %>
+                </h2>
             </div>
-            <h2><%= label_albums.length %> Albums</h2>
+            <h2>
+                <%= label_albums.length %> Albums
+            </h2>
             <div class="listContainer">
                 <% label_albums.forEach((album)=> { %>
                     <div>
@@ -45,26 +52,31 @@
                     </div>
                     <% }) %>
             </div>
-            <h2><%= label_formats.length %> Releases</h2>
+            <h2>
+                <%= label_formats.length %> Releases
+            </h2>
             <div class="listContainer">
                 <% label_formats.forEach((format)=> { %>
                     <div>
                         <a href=<%- format.url %>>
-                            <img src=<%- format.image===undefined || format.image === '' ? 'https://iili.io/HlHy9Yx.png' : format.image %>
+                            <img src=<%- format.image===undefined || format.image==='' ? 'https://iili.io/HlHy9Yx.png' :
+                                format.image %>
                             alt="" class="imageSmall">
                             <h2>
                                 <%= format.album.title %>
                             </h2>
-                        
-                        <p> <%= format.format %> </p>
-                        <div class="listLower">
+
                             <p>
-                                $<%= format.price_formatted %>
+                                <%= format.format %>
                             </p>
-                            <p>
-                                <%= format.stock %> available
-                            </p>
-                        </div>
+                            <div class="listLower">
+                                <p>
+                                    $<%= format.price_formatted %>
+                                </p>
+                                <p>
+                                    <%= format.stock %> available
+                                </p>
+                            </div>
                     </div></a>
                     <% }) %>
             </div>

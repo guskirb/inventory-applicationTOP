@@ -11,12 +11,20 @@
 <body>
     <%- include('../partials/nav.ejs') %>
         <div class="mainContainer">
-            <h1><%= 'Delete ' + format.album.title + ' ' + format.format + ' release' %></h1>
+            <h1>
+                <%= 'Delete ' + format.album.title + ' ' + format.format + ' release' %>
+            </h1>
             <div class="listContainer">
-                <h2>Are you sure you want to delete?</h2>
                 <form method="post">
+                    <label for="password">Enter password to delete:</label>
+                    <input type="password" name="password" id="password">
                     <button type="submit">Delete</button>
                 </form>
             </div>
+            <% if(error){ %>
+                <h3>
+                    <%= error %>
+                </h3>
+                <% } %>
         </div>
 </body>

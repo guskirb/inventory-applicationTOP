@@ -103,12 +103,22 @@ exports.format_delete_get = asyncHandler(async (req, res, next) => {
 
     res.render('./format/format_delete', {
         format: format,
+        error: undefined,
     });
 });
 
 exports.format_delete_post = asyncHandler(async (req, res, next) => {
-    await Format.findByIdAndDelete(req.params.id);
-    res.redirect('/category/releases');
+    const format = await Format.findById(req.params.id).populate('album').exec();
+
+    if (req.body.password === 'password') {
+        await Format.findByIdAndDelete(req.params.id);
+        res.redirect('/category/releases');
+    } else {
+        res.render('./format/format_delete', {
+            format: format,
+            error: 'Password incorrect',
+        });
+    }
 });
 
 exports.format_update_get = asyncHandler(async (req, res, next) => {

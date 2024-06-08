@@ -86,6 +86,7 @@ exports.label_delete_get = asyncHandler(async (req, res, next) => {
     res.render('./label/label_delete', {
         label: label,
         label_albums: allAlbumsByLabel,
+        error: undefined,
     });
 });
 
@@ -101,9 +102,15 @@ exports.label_delete_post = asyncHandler(async (req, res, next) => {
             label_albums: allAlbumsByLabel,
         });
         return;
-    } else {
+    } else if (req.body.password === 'password') {
         await Label.findByIdAndDelete(req.params.id);
         res.redirect('/category/labels');
+    } else {
+        res.render('./label/label_delete', {
+            label: label,
+            label_albums: allAlbumsByLabel,
+            error: 'Password incorrect',
+        });
     }
 });
 

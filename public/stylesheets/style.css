@@ -1,7 +1,9 @@
 :root {
   --box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px,
-    rgba(17, 17, 26, 0.1) 0px 0px 8px;  
+    rgba(17, 17, 26, 0.1) 0px 0px 8px;
   --border: 1px solid rgb(201, 201, 201);
+  --background-color: #ececec;
+  --accent-color: rgb(18, 29, 63);
 }
 
 body {
@@ -11,7 +13,7 @@ body {
   flex-flow: column;
   height: 100vh;
   width: 100%;
-  background-color: #ececec;
+  background-color: var(--background-color);
 }
 
 a {
@@ -20,7 +22,7 @@ a {
 }
 
 a:hover {
-  text-decoration: underline;
+  color: #575757;
 }
 
 h1,
@@ -37,7 +39,7 @@ h2 {
 
 .navBar {
   padding: 20px;
-  background-color: red;
+  background-color: var(--accent-color);
   display: flex;
   flex-flow: column;
   gap: 20px;
@@ -45,6 +47,7 @@ h2 {
   height: 100vh;
   z-index: 1;
   box-shadow: var(--box-shadow);
+  color: white;
 }
 
 .navBar ul {
@@ -71,8 +74,22 @@ h2 {
 
 .searchInput {
   display: flex;
+  align-items: center;
   flex-flow: row;
   margin-right: 40px;
+}
+
+#search {
+  width: 20vw;
+  height: 25px;
+  border-radius: 5px;
+  border: none;
+  background-color: var(--background-color);
+  padding-inline: 5px;
+}
+
+.searchInput button {
+  height: 25px;
 }
 
 .mainContainer {
@@ -103,9 +120,14 @@ label {
   gap: 5px;
 }
 
-.inputForm button {
+ button {
   width: 100px;
   height: 30px;
+  background-color: var(--accent-color);
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
 }
 
 .coupled {
@@ -148,6 +170,7 @@ label {
   height: 200px;
   width: 200px;
   object-fit: cover;
+  box-shadow: var(--box-shadow);
 }
 
 .imageSmall {
@@ -171,11 +194,12 @@ label {
   padding: 10px;
   width: 180px;
   height: 80px;
+  box-shadow: var(--box-shadow);
   transition: all 0.1s ease-in-out;
 }
 
 .box:hover {
-  scale: 1.05;
+  scale: 1.02;
 }
 
 .boxInfo {
@@ -200,7 +224,7 @@ label {
 }
 
 .listContainer > div:hover {
-  scale: 1.05;
+  scale: 1.02;
 }
 
 .listLower {

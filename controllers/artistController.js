@@ -101,6 +101,7 @@ exports.artist_delete_get = asyncHandler(async (req, res, next) => {
     res.render('./artist/artist_delete', {
         artist: artist,
         artist_albums: allAlbumsByArtist,
+        error: undefined,
     });
 });
 
@@ -116,9 +117,15 @@ exports.artist_delete_post = asyncHandler(async (req, res, next) => {
             artist_albums: allAlbumsByArtist,
         });
         return;
-    } else {
+    } else if (req.body.password === 'password') {
         await Artist.findByIdAndDelete(req.params.id);
         res.redirect('/category/artists');
+    } else {
+        res.render('./artist/artist_delete', {
+            artist: artist,
+            artist_albums: allAlbumsByArtist,
+            error: 'Password incorrect',
+        });
     }
 });
 

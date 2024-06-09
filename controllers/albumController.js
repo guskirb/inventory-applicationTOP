@@ -133,7 +133,7 @@ exports.album_delete_post = asyncHandler(async (req, res, next) => {
             album_formats: allFormatsByArtist,
         });
         return;
-    } else if (req.body.password === 'password') {
+    } else if (req.body.password === process.env.password) {
         await Album.findByIdAndDelete(req.params.id);
         res.redirect('/category/albums');
     } else {

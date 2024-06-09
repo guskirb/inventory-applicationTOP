@@ -102,7 +102,7 @@ exports.label_delete_post = asyncHandler(async (req, res, next) => {
             label_albums: allAlbumsByLabel,
         });
         return;
-    } else if (req.body.password === 'password') {
+    } else if (req.body.password === process.env.password) {
         await Label.findByIdAndDelete(req.params.id);
         res.redirect('/category/labels');
     } else {

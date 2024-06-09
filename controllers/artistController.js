@@ -117,7 +117,7 @@ exports.artist_delete_post = asyncHandler(async (req, res, next) => {
             artist_albums: allAlbumsByArtist,
         });
         return;
-    } else if (req.body.password === 'password') {
+    } else if (req.body.password === process.env.password) {
         await Artist.findByIdAndDelete(req.params.id);
         res.redirect('/category/artists');
     } else {

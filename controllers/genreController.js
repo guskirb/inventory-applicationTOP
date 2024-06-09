@@ -103,7 +103,7 @@ exports.genre_delete_post = asyncHandler(async (req, res, next) => {
             genre_albums: allAlbumsByGenre,
         });
         return;
-    } else if (req.body.password === 'password') {
+    } else if (req.body.password === process.env.password) {
         await Genre.findByIdAndDelete(req.params.id);
         res.redirect('/category/genres');
     } else {

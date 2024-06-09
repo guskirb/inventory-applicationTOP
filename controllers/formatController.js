@@ -127,7 +127,7 @@ exports.format_delete_get = asyncHandler(async (req, res, next) => {
 exports.format_delete_post = asyncHandler(async (req, res, next) => {
     const format = await Format.findById(req.params.id).populate('album').exec();
 
-    if (req.body.password === 'password') {
+    if (req.body.password === process.env.password) {
         await Format.findByIdAndDelete(req.params.id);
         res.redirect('/category/releases');
     } else {

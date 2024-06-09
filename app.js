@@ -3,10 +3,12 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const compression = require('compression');
+const helmet = require('helmet');
 
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
-const mongoDB = 'mongodb+srv://guskirb:WG6emFaMRwQ3ZcqW@cluster0.xnhxuem.mongodb.net/music_inventory?retryWrites=true&w=majority&appName=Cluster0'
+const mongoDB = process.env.MONGODB_URI;
 
 const indexRouter = require('./routes/index');
 const categoryRouter = require('./routes/category');
@@ -17,6 +19,16 @@ async function main() {
 }
 
 const app = express();
+
+const RateLimit = require('express-rate-limit');
+const limiter = RateLimit({
+  windowMs: 1 * 60 * 1000,
+  max: 40,
+});
+
+app.use(compression());
+app.use(helmet());
+app.use(limiter());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

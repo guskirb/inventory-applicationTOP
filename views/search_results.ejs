@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <%- include('./partials/nav.ejs') %>
+        <%- include('./partials/search.ejs') %>
+            <div class="mainContainer">
+                <h1>
+                    <%= title %>
+                </h1>
+                <h2>
+                    <%= artists.length %> Artists
+                </h2>
+                <div class="listContainer">
+                    <% artists.forEach((artist)=> { %>
+                        <div>
+                            <a href=<%- artist.url %>>
+                                <img src=<%- artist.image==="" || undefined
+                                    ? 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
+                                    : artist.image %> alt="" class="imageSmall">
+                                <h2>
+                                    <%= artist.name %>
+                                </h2>
+                            </a>
+                        </div>
+                        <% }) %>
+                </div>
+                <h2>
+                    <%= albums.length %> Albums
+                </h2>
+                <div class="listContainer">
+                    <% albums.forEach((album)=> { %>
+                        <div>
+                            <a href=<%- album.url %>>
+                                <img src=<%- album.image==="" || undefined ? 'https://iili.io/HlHy9Yx.png' : album.image
+                                    %>
+                                alt=""
+                                class="imageSmall">
+                                <h2>
+                                    <%= album.title %>
+                                </h2>
+                            </a>
+                            <a href=<%- album.artist.url %>>
+                                <p>
+                                    <%= album.artist.name %>
+                                </p>
+                            </a>
+                            <p>
+                                <%= album.release_date_formatted %>
+                            </p>
+                        </div>
+                        <% }) %>
+                </div>
+                <h2>
+                    <%= formats.length %> Releases
+                </h2>
+                <div class="listContainer">
+                    <% formats.forEach((format)=> { %>
+                        <div>
+                            <a href=<%- format.url %>>
+                                <img src=<%- format.image===undefined || format.image==='' ? 'https://iili.io/HlHy9Yx.png' :
+                                    format.image %>
+                                alt="" class="imageSmall">
+                                <h2>
+                                    <%= format.album.title %>
+                                </h2>
+                            </a>
+                            <a href=<%- format.album.artist.url %>>
+                                <p>
+                                    <%= format.album.artist.name %>
+                                </p>
+                            </a>
+                            <a href=<%- format.url %>>
+                                <p>
+                                    <%= format.format %>
+                                </p>
+                            </a>
+                            <a href=<%- format.url %>>
+                                <div class="listLower">
+                                    <p>
+                                        $<%= format.price_formatted %>
+                                    </p>
+                                    <p>
+                                        <%= format.stock %> available
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                        <% }) %>
+                </div>
+            </div>
+</body>

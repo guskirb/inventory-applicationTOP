@@ -10,9 +10,10 @@
 
 <body>
     <%- include('../partials/nav.ejs') %>
+    <%- include('../partials/search.ejs') %>
         <div class="mainContainer">
             <h1>
-                <%= 'Delete ' + format.album.title + ' ' + format.format + ' release' %>
+                <%= 'Delete ' + format.album.title + ' ' + format.format %>
             </h1>
             <div class="listContainer">
                 <form method="post">

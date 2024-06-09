@@ -11,6 +11,8 @@ const index_controller = require('../controllers/indexController');
 // Homepage route
 router.get('/', index_controller.index);
 
+router.get('/search', index_controller.search);
+
 // Album routes
 router.get('/album/create', album_controller.album_create_get);
 

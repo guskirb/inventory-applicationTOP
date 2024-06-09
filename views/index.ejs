@@ -10,44 +10,50 @@
 
 <body>
   <%- include('./partials/nav.ejs') %>
-  <%- include('./partials/search.ejs') %>
-    <div class="mainContainer">
-      <h1>
-        <%= title %>
-      </h1>
-      <div class="listContainer">
-        <a href="/category/albums">
-          <div class="box">
-            <h2>
-              <%= albums %>
-            </h2>
-            <p>Total albums</p>
-            <div class="coupled boxInfo">
-              <p>More Info</p>
-              <div class="arrowButton"></div>
+    <%- include('./partials/search.ejs') %>
+      <div class="mainContainer">
+        <h1>
+          <%= title %>
+        </h1>
+        <div class="listContainer">
+          <a href="/category/albums">
+            <div class="box">
+              <h2>
+                <%= albums %>
+              </h2>
+              <p>Total albums</p>
+              <div class="coupled boxInfo">
+                <p>More Info</p>
+                <div class="arrowButton"></div>
+              </div>
             </div>
-          </div>
-        </a>
-        <a href="/category/releases">
-          <div class="box">
-            <h2>
-              <%= formats[0].stock %>
-            </h2>
-            <p>Items in stock</p>
-            <div class="coupled boxInfo">
-              <p>More Info</p>
-              <div class="arrowButton"></div>
+          </a>
+          <a href="/category/releases">
+            <div class="box">
+              <h2>
+                <%= formats[0].stock %>
+              </h2>
+              <p>Items in stock</p>
+              <div class="coupled boxInfo">
+                <p>More Info</p>
+                <div class="arrowButton"></div>
+              </div>
             </div>
-          </div>
-        </a>
-        <div class="box">
-          <h2>
-            <%= formats[0].low_stock %>
-          </h2>
-          <p>Items low in stock</p>
+          </a>
+          <a href="/category/releases">
+            <div class="box">
+              <h2>
+                <%= formats[0].low_stock %>
+              </h2>
+              <p>Items low in stock</p>
+              <div class="coupled boxInfo">
+                <p>More Info</p>
+                <div class="arrowButton"></div>
+              </div>
+            </div>
+          </a>
         </div>
       </div>
-    </div>
 </body>
 
 </html>

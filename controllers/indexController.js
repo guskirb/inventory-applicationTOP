@@ -25,7 +25,7 @@ exports.index = asyncHandler(async (req, res, next) => {
 });
 
 exports.search = asyncHandler(async (req, res, next) => {
-    const search = req.query.search;
+    const search = req.query.search.replace(/\\/g, "\\\\");
 
     const artists = await Artist.find(
         {
@@ -50,7 +50,7 @@ exports.search = asyncHandler(async (req, res, next) => {
     }).exec();
 
     res.render('search_results', {
-        title: 'Search',
+        title: `${search} - Search`,
         artists: artists,
         albums: albums,
         formats: formats,

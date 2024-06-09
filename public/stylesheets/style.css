@@ -1,9 +1,17 @@
+:root {
+  --box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px,
+    rgba(17, 17, 26, 0.1) 0px 0px 8px;  
+  --border: 1px solid rgb(201, 201, 201);
+}
+
 body {
   margin: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   display: flex;
   flex-flow: column;
   height: 100vh;
+  width: 100%;
+  background-color: #ececec;
 }
 
 a {
@@ -36,6 +44,7 @@ h2 {
   position: fixed;
   height: 100vh;
   z-index: 1;
+  box-shadow: var(--box-shadow);
 }
 
 .navBar ul {
@@ -50,13 +59,14 @@ h2 {
 }
 
 .searchBar {
-  background-color: blue;
+  background-color: rgb(255, 255, 255);
   height: 55px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   position: fixed;
   width: 100vw;
+  box-shadow: var(--box-shadow);
 }
 
 .searchInput {
@@ -78,11 +88,24 @@ form {
   gap: 10px;
 }
 
+.inputForm {
+  width: 30vw;
+  background-color: white;
+  padding: 10px;
+  box-shadow: var(--box-shadow);
+  border: var(--border);
+}
+
 label {
   display: flex;
   flex-flow: column;
   width: 100%;
   gap: 5px;
+}
+
+.inputForm button {
+  width: 100px;
+  height: 30px;
 }
 
 .coupled {
@@ -148,6 +171,11 @@ label {
   padding: 10px;
   width: 180px;
   height: 80px;
+  transition: all 0.1s ease-in-out;
+}
+
+.box:hover {
+  scale: 1.05;
 }
 
 .boxInfo {
@@ -162,8 +190,17 @@ label {
   padding: 10px;
 }
 
-.listContainer>div{
+.listContainer > div {
   width: 150px;
+  background-color: white;
+  padding: 5px;
+  box-shadow: var(--box-shadow);
+  border: var(--border);
+  transition: all 0.1s ease-in-out;
+}
+
+.listContainer > div:hover {
+  scale: 1.05;
 }
 
 .listLower {

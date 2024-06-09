@@ -25,7 +25,7 @@ const limiter = RateLimit({
   max: 40,
 });
 
-app.use(compression());1
+app.use(compression());
 app.use(limiter);
 
 // view engine setup

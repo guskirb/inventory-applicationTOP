@@ -4,21 +4,20 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const compression = require('compression');
-const helmet = require('helmet');
+
+const indexRouter = require('./routes/index');
+const categoryRouter = require('./routes/category');
+
+const app = express();
 
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
 const mongoDB = process.env.MONGODB_URI;
 
-const indexRouter = require('./routes/index');
-const categoryRouter = require('./routes/category');
-
 main().catch((err) => console.log(err));
 async function main() {
   await mongoose.connect(mongoDB);
 }
-
-const app = express();
 
 const RateLimit = require('express-rate-limit');
 const limiter = RateLimit({
@@ -26,8 +25,7 @@ const limiter = RateLimit({
   max: 40,
 });
 
-app.use(compression());
-app.use(helmet());
+app.use(compression());1
 app.use(limiter);
 
 // view engine setup

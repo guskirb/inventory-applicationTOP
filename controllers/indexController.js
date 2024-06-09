@@ -4,7 +4,7 @@ const Artist = require('../models/artist');
 const Format = require('../models/format');
 
 exports.index = asyncHandler(async (req, res, next) => {
-    const [allAlbums, allFormats] = await Promise.all([
+    const [allAlbums, allFormats, recentFormats] = await Promise.all([
         Album.countDocuments({}).exec(),
         Format.aggregate([
             {
@@ -15,12 +15,14 @@ exports.index = asyncHandler(async (req, res, next) => {
                 }
             },
         ]).exec(),
+        Format.find().sort({ _id: -1 }).limit(8).populate('album').exec(),
     ]);
 
     res.render('index', {
         title: 'Dashboard',
         albums: allAlbums,
         formats: allFormats,
+        recent_formats: recentFormats,
     })
 });
 

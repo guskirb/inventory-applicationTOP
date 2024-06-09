@@ -53,6 +53,43 @@
             </div>
           </a>
         </div>
+        <h1>
+          Recent Releases
+      </h1>
+      <div class="listContainer">
+          <% recent_formats.forEach((format)=> { %>
+              <div>
+                  <a href=<%- format.url %>>
+                      <img src=<%- format.image===undefined || format.image==='' ? 'https://iili.io/HlHy9Yx.png' :
+                          format.image %>
+                      alt="" class="imageSmall">
+                      <h2>
+                          <%= format.album.title %>
+                      </h2>
+                  </a>
+                  <a href=<%- format.album.artist.url %>>
+                      <p>
+                          <%= format.album.artist.name %>
+                      </p>
+                  </a>
+                  <a href=<%- format.url %>>
+                      <p>
+                          <%= format.format %>
+                      </p>
+                  </a>
+                  <a href=<%- format.url %>>
+                      <div class="listLower">
+                          <p>
+                              $<%= format.price_formatted %>
+                          </p>
+                          <p class=<%- format.stock <= 5 ? 'red' : '' %>>
+                              <%= format.stock %> available
+                          </p>
+                      </div>
+                  </a>
+              </div>
+              <% }) %>
+      </div>
       </div>
 </body>
 

@@ -58,7 +58,7 @@
                             <p>
                                 $<%= format.price_formatted %>
                             </p>
-                            <p>
+                            <p class=<%- format.stock <= 5 ? 'red' : '' %>>
                                 <%= format.stock %> available
                             </p>
                         </div>

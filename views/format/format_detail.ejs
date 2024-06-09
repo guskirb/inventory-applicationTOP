@@ -48,7 +48,7 @@
                         Price:
                         $<%= format.price_formatted %>
                     </h2>
-                    <h2>
+                    <h2 class=<%- format.stock <= 5 ? 'red' : '' %>>
                         <%= format.stock %> In Stock
                     </h2>
                 </div>

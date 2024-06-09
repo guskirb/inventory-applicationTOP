@@ -20,6 +20,23 @@ exports.format_list = asyncHandler(async (req, res, next) => {
     });
 });
 
+exports.format_list_low = asyncHandler(async (req, res, next) => {
+    const allFormats = await Format.find({ stock: { $lte: 5 } }).populate({
+        path: 'album',
+        select: 'title',
+        options: { sort: { "title": 1 } },
+        populate: {
+            path: 'artist',
+            model: 'Artist',
+        },
+    }).sort({ stock: 1 }).exec();
+
+    res.render('./format/format_list', {
+        title: 'Low Stock',
+        formats: allFormats,
+    });
+});
+
 exports.format_detail = asyncHandler(async (req, res, next) => {
     let format;
     try {

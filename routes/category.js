@@ -17,6 +17,8 @@ router.get('/artists', artist_controller.artist_list);
 // Format routes
 router.get('/releases', format_controller.format_list);
 
+router.get('/releases/low', format_controller.format_list_low);
+
 // Genre list
 router.get('/genres', genre_controller.genre_list);
 

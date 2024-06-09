@@ -123,6 +123,10 @@ input {
   margin-top: 55px;
 }
 
+.mainContainer h1 {
+  margin-block: 15px;
+}
+
 form {
   display: flex;
   flex-flow: column;
@@ -221,12 +225,25 @@ button:hover {
   flex-flow: column;
   align-items: flex-start;
   justify-content: flex-start;
-  background-color: yellow;
-  padding: 10px;
+  padding: 20px;
   width: 180px;
   height: 80px;
   box-shadow: var(--box-shadow);
   transition: all 0.1s ease-in-out;
+  color: white;
+  border-radius: 10px;
+}
+
+.totalAlbums {
+  background-color: rgb(71, 171, 218);
+}
+
+.totalStock {
+  background-color: rgb(106, 192, 84);
+}
+
+.lowStock {
+  background-color: rgb(216, 91, 74);
 }
 
 .box:hover {

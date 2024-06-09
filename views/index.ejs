@@ -17,7 +17,7 @@
         </h1>
         <div class="listContainer">
           <a href="/category/albums">
-            <div class="box">
+            <div class="box totalAlbums">
               <h2>
                 <%= albums %>
               </h2>
@@ -29,7 +29,7 @@
             </div>
           </a>
           <a href="/category/releases">
-            <div class="box">
+            <div class="box totalStock">
               <h2>
                 <%= formats[0].stock %>
               </h2>
@@ -41,7 +41,7 @@
             </div>
           </a>
           <a href="/category/releases/low">
-            <div class="box">
+            <div class="box lowStock">
               <h2>
                 <%= formats[0].low_stock %>
               </h2>

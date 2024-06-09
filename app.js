@@ -28,7 +28,7 @@ const limiter = RateLimit({
 
 app.use(compression());
 app.use(helmet());
-app.use(limiter());
+app.use(limiter);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

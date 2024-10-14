@@ -47,6 +47,7 @@ h2 {
   z-index: 1;
   box-shadow: var(--box-shadow);
   color: white;
+  z-index: 20;
 }
 
 .navBar h1,
@@ -91,6 +92,7 @@ h2 {
   position: fixed;
   width: 100vw;
   box-shadow: var(--box-shadow);
+  z-index: 10;
 }
 
 .searchInput {

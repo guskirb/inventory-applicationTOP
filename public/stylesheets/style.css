@@ -44,7 +44,6 @@ h2 {
   gap: 10px;
   position: fixed;
   height: 100vh;
-  z-index: 1;
   box-shadow: var(--box-shadow);
   color: white;
   z-index: 20;
